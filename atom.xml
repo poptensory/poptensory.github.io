@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.tensory.online/"/>
-  <updated>2018-09-09T02:13:23.567Z</updated>
+  <updated>2018-09-09T05:52:57.269Z</updated>
   <id>http://www.tensory.online/</id>
   
   <author>
@@ -17,9 +17,33 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>小小总结-新的征程</title>
+    <link href="http://www.tensory.online/2018/09/09/firstBlogAboutMasterLife/"/>
+    <id>http://www.tensory.online/2018/09/09/firstBlogAboutMasterLife/</id>
+    <published>2018-09-09T04:54:39.271Z</published>
+    <updated>2018-09-09T05:52:57.269Z</updated>
+    
+    <content type="html"><![CDATA[<p><excerpt in="" index="" |=""><br>毕业了才知道，上大学真舒服。<a id="more"></a></excerpt></p><the rest="" of="" contents="" |="" 余下全文=""><p>这个博客反反复复搭了3次，这次终于找到自己想要的主题，虽然存在一些问题和可以优化的细节，大部分功能已经配置齐全。第一篇正式的博客，总结一下近况。</p><p>2018.3-2018.9这半年，知识增长的不多不少，体重依然稳定。总结了一些学习和生活的小感悟。</p><h1 id="编程的好习惯"><a href="#编程的好习惯" class="headerlink" title="编程的好习惯"></a>编程的好习惯</h1><p>1.代码量较大的时候，做好单个函数/模块的测试，测试的数据应该多样化、复杂化，确保涵盖真实输入的所有可能。</p><p>2.涉及大量代码、大量输入文件、结果文件时，写好文档，说明各个脚本、文本文件等的意义。</p><h1 id="学习与选择"><a href="#学习与选择" class="headerlink" title="学习与选择"></a>学习与选择</h1><p>1.发挥自己的优势。明确自己的优势，是算法、数学、工程能力还是系统能力，也许样样干的都不错，但是一个人的时间和精力有限，学习所有的东西几乎不可能，所以务必选择自己擅长的领域/方向/方法，充分发挥自己的优势，规避自己不熟悉且学习成本高的那一块。</p><p>2.在面临大大小小的选择的时候，不必马上做出选择，先冷静下来，避免“选择-做一段时间-放弃”这种情况，这样既浪费时间，又让自己养成了半途而废的畏惧心理。</p><h1 id="好好生活"><a href="#好好生活" class="headerlink" title="好好生活"></a>好好生活</h1><p>保持热情，让自己舒服。庆幸自己做的工作不辣么讨厌，但是遇到正向反馈周期长的时候，总会失去兴趣。这个时候，可以写个博客，把自己学到的show出来，酷酷的，让自己成就感满满。新的篇章早已打开，努力不努力的鸡汤，说起来没有意义，总之，扎实做事，让自己活的舒服一点。还有…多听相声。</p></the>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;&lt;excerpt in=&quot;&quot; index=&quot;&quot; |=&quot;&quot;&gt;&lt;br&gt;毕业了才知道，上大学真舒服。
+    
+    </summary>
+    
+      <category term="生活" scheme="http://www.tensory.online/categories/%E7%94%9F%E6%B4%BB/"/>
+    
+    
+      <category term="编程" scheme="http://www.tensory.online/tags/%E7%BC%96%E7%A8%8B/"/>
+    
+      <category term="舒服" scheme="http://www.tensory.online/tags/%E8%88%92%E6%9C%8D/"/>
+    
+  </entry>
+  
+  <entry>
     <title>显示图片</title>
-    <link href="http://www.tensory.online/2018/09/04/show_pictures/"/>
-    <id>http://www.tensory.online/2018/09/04/show_pictures/</id>
+    <link href="http://www.tensory.online/2018/09/04/BACKUPmd/show_pictures/"/>
+    <id>http://www.tensory.online/2018/09/04/BACKUPmd/show_pictures/</id>
     <published>2018-09-04T08:40:50.933Z</published>
     <updated>2018-09-09T02:13:23.567Z</updated>
     
@@ -44,8 +68,8 @@
   
   <entry>
     <title>显示目录</title>
-    <link href="http://www.tensory.online/2018/09/04/show-content/"/>
-    <id>http://www.tensory.online/2018/09/04/show-content/</id>
+    <link href="http://www.tensory.online/2018/09/04/BACKUPmd/show-content/"/>
+    <id>http://www.tensory.online/2018/09/04/BACKUPmd/show-content/</id>
     <published>2018-09-04T08:02:44.523Z</published>
     <updated>2018-09-04T08:12:59.268Z</updated>
     
@@ -66,8 +90,8 @@
   
   <entry>
     <title>测试类别和标签</title>
-    <link href="http://www.tensory.online/2018/09/04/hexo-one/"/>
-    <id>http://www.tensory.online/2018/09/04/hexo-one/</id>
+    <link href="http://www.tensory.online/2018/09/04/BACKUPmd/hexo-one/"/>
+    <id>http://www.tensory.online/2018/09/04/BACKUPmd/hexo-one/</id>
     <published>2018-09-04T07:43:03.054Z</published>
     <updated>2018-09-04T07:44:11.706Z</updated>
     
@@ -92,8 +116,8 @@
   
   <entry>
     <title>show abstract</title>
-    <link href="http://www.tensory.online/2018/09/04/show-abstract/"/>
-    <id>http://www.tensory.online/2018/09/04/show-abstract/</id>
+    <link href="http://www.tensory.online/2018/09/04/BACKUPmd/show-abstract/"/>
+    <id>http://www.tensory.online/2018/09/04/BACKUPmd/show-abstract/</id>
     <published>2018-09-04T07:06:19.264Z</published>
     <updated>2018-09-04T07:12:09.700Z</updated>
     
@@ -110,8 +134,8 @@
   
   <entry>
     <title>Hello Hexo</title>
-    <link href="http://www.tensory.online/2018/09/04/hello-hexo/"/>
-    <id>http://www.tensory.online/2018/09/04/hello-hexo/</id>
+    <link href="http://www.tensory.online/2018/09/04/BACKUPmd/hello-hexo/"/>
+    <id>http://www.tensory.online/2018/09/04/BACKUPmd/hello-hexo/</id>
     <published>2018-09-04T07:00:40.446Z</published>
     <updated>2018-09-04T07:39:10.802Z</updated>
     
@@ -140,8 +164,8 @@
   
   <entry>
     <title>Hello World</title>
-    <link href="http://www.tensory.online/2018/09/04/hello-world/"/>
-    <id>http://www.tensory.online/2018/09/04/hello-world/</id>
+    <link href="http://www.tensory.online/2018/09/04/BACKUPmd/hello-world/"/>
+    <id>http://www.tensory.online/2018/09/04/BACKUPmd/hello-world/</id>
     <published>2018-09-04T04:12:04.170Z</published>
     <updated>2018-09-04T08:49:45.105Z</updated>
     
