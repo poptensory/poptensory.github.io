@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.tensory.online/"/>
-  <updated>2018-09-09T02:10:20.884Z</updated>
+  <updated>2018-09-09T02:13:23.567Z</updated>
   <id>http://www.tensory.online/</id>
   
   <author>
@@ -21,9 +21,9 @@
     <link href="http://www.tensory.online/2018/09/04/show_pictures/"/>
     <id>http://www.tensory.online/2018/09/04/show_pictures/</id>
     <published>2018-09-04T08:40:50.933Z</published>
-    <updated>2018-09-09T02:10:20.884Z</updated>
+    <updated>2018-09-09T02:13:23.567Z</updated>
     
-    <content type="html"><![CDATA[<p><excerpt in="" index="" |=""><br>此处写摘要<a id="more"></a></excerpt></p><p><the rest="" of="" contents="" |="" 余下全文=""><br>下面开始写正文内容</the></p><h1 id="图1"><a href="#图1" class="headerlink" title="图1"></a>图1</h1><p><img src="https://raw.githubusercontent.com/poptensory/MarkdownPictures/master/v2-9c3af05bf2770df15047b331ec8b8226_r.jpg" alt="Alt text" title="Optional title"></p><h1 id="图2"><a href="#图2" class="headerlink" title="图2"></a>图2</h1><h1 id="图3"><a href="#图3" class="headerlink" title="图3"></a>图3</h1>]]></content>
+    <content type="html"><![CDATA[<p><excerpt in="" index="" |=""><br>此处写摘要<a id="more"></a></excerpt></p><p><the rest="" of="" contents="" |="" 余下全文=""><br>下面开始写正文内容</the></p><h1 id="图1"><a href="#图1" class="headerlink" title="图1"></a>图1</h1><p><img src="https://raw.githubusercontent.com/poptensory/MarkdownPictures/master/v2-9c3af05bf2770df15047b331ec8b8226_r.jpg" alt="Alt text" title="Optional title"><br><img src="https://raw.githubusercontent.com/poptensory/MarkdownPictures/master/v2-c36bc7122703a7927de21b1b6522bf3d_r.jpg" alt="Alt text" title="Optional title"></p>]]></content>
     
     <summary type="html">
     
