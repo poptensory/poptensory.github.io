@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.tensory.online/"/>
-  <updated>2018-09-09T05:52:57.269Z</updated>
+  <updated>2018-09-14T14:43:50.666Z</updated>
   <id>http://www.tensory.online/</id>
   
   <author>
@@ -15,6 +15,32 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>配置多台虚拟机之间的免密通信</title>
+    <link href="http://www.tensory.online/2018/09/14/ssh_rsa/"/>
+    <id>http://www.tensory.online/2018/09/14/ssh_rsa/</id>
+    <published>2018-09-14T13:28:35.997Z</published>
+    <updated>2018-09-14T14:43:50.666Z</updated>
+    
+    <content type="html"><![CDATA[<p><excerpt in="" index="" |=""><br>本文讲解多台虚拟机之间的免密登录和免密文件传输<a id="more"></a></excerpt></p><the rest="" of="" contents="" |="" 余下全文=""><p>在搭建Spark+Hadoop平台的时候，通常需要将文件从一个节点批量传递给其他节点，传递的方式是通过scp命令，但是每一次scp都需要对方口令，<br>才可以传输。为了方便文件传输，需要配置免密登录，这样在使用scp命令传输的时候，可以省去输入密码的繁琐过程。</p><h1 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h1><p>假设有主机名为A、B和C三台虚拟机，IP地址分别为IPA、IPB和IPC。首先每台虚拟机都可以生成属于自己的秘钥（类似于每台虚拟机的口令），<br>假设生成的秘钥分别为pwdA、pwdB和pwdC，那么只要这些虚拟机相互交换这些秘钥，之后就可以了互相免密通信了。具体的做法是，举个例子，<br>A将pwdA放到一个文件X中，B和C将各自的秘钥也放到位于A的X中（这个过程中，B和C需要知道A的口令），现在A的X中含有A、B和C三台虚拟机<br>秘钥，然后由A将文件X分发给B和C，如此，A、B和C均具有另外二者的秘钥了，于是就可以进行免密登录和免密文件传输。</p><h1 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h1><ul><li>关闭防火墙</li></ul><p>在每台虚拟机的终端执行关闭防火墙的命令：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo ufw disable</span><br></pre></td></tr></table></figure></p><ul><li>配置IP地址到代号的映射</li></ul><p>用IP地址标记某台主机不方便，因此可以为将主机IP地址映射为一个代号，方便命令的输入。例如A、B和C的代号可以分别是master、slave1和<br>slave2(此处master slave没有特别意义)。在每台虚拟机终端修改/etc/hosts文件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo vi /etc/hosts</span><br></pre></td></tr></table></figure></p><p>在文件末尾追加如下内容：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">IPAmaster</span><br><span class="line">IPBslave1</span><br><span class="line">IPCslave2</span><br></pre></td></tr></table></figure></p><p>输入完毕，保存。注意，此步骤不是必要的，只是为了稍后秘钥传输和之后文件传输的便捷。</p><h1 id="生成rsa秘钥"><a href="#生成rsa秘钥" class="headerlink" title="生成rsa秘钥"></a>生成rsa秘钥</h1><p>在每台虚拟机终端，生成各自的rsa秘钥。</p><p>在任意一个目录新建.ssh目录，我们以在~目录下建立这个目录（这个目录以.开头，ls看不到，ls -a 命令可以看到）：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mkdir .ssh</span><br></pre></td></tr></table></figure></p><p>进入该目录<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cd .ssh</span><br></pre></td></tr></table></figure></p><p>生成rsa秘钥<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen -t rsa</span><br></pre></td></tr></table></figure></p><p>(此处会询问是否设置密码，连续输入三个回车即可，即默认无密码ssh。如果是大型项目，需要设置密码)<br>然后会发现，在.ssh目录下，多了两个文件，分别名为  id_rsa和id_rsa.pub，分别为私钥和公钥，虚拟机之间需要交换的公钥。</p><h1 id="收集秘钥"><a href="#收集秘钥" class="headerlink" title="收集秘钥"></a>收集秘钥</h1><p>现在，每台虚拟机都有了各自的秘钥，现在指定某台虚拟机，将公钥收集在一起。此处指定master，即虚拟机A。<br>在A的终端的.ssh目录下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat id_rsa.pub &gt;&gt; authorized_keys</span><br></pre></td></tr></table></figure></p><p>即将A的公钥放到authorized_keys文件中。</p><p>在B的终端的.ssh目录下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scp id_rsa.pub | ssh 主机名@master &apos;cat &gt;&gt; ~/.ssh/authorized_keys&apos;</span><br></pre></td></tr></table></figure></p><p>（此处要输入A的口令）<br>即将B的公钥放到A的authorized_keys中</p><p>在C的终端的.ssh目录下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scp id_rsa.pub | ssh 主机名@master &apos;cat &gt;&gt; ~/.ssh/authorized_keys&apos;</span><br></pre></td></tr></table></figure></p><p>（此处要输入A的口令）<br>即将C的公钥放到A的authorized_keys中</p><h1 id="分发秘钥"><a href="#分发秘钥" class="headerlink" title="分发秘钥"></a>分发秘钥</h1><p>现在A的authorized_keys中有了A、B和C的秘钥了，只需要将这个文件分发给B和C即可。<br>在A的终端分别执行：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scp authorized_keys | ssh B@slave1:~/.ssh/</span><br></pre></td></tr></table></figure><p>（此处要输入B的口令）</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scp authorized_keys | ssh C@slave2:~/.ssh/</span><br></pre></td></tr></table></figure><p>（此处要输入C的口令）</p><h1 id="完成配置"><a href="#完成配置" class="headerlink" title="完成配置"></a>完成配置</h1><p>现在A、B和C分别具有另外两者的秘钥了，可以使用 ssh 命令免密登录或scp免密传输文件，命令如下：</p><ul><li>在A的终端登录到B主机：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh slave1</span><br></pre></td></tr></table></figure></li></ul><p>（不用口令就可以登录到B的终端）</p><ul><li>在C的终端传文件给A主机：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scp file_dir/file_name | ssh A@master:/some_dir/</span><br></pre></td></tr></table></figure></li></ul><p>（不用口令）</p><h1 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h1><ul><li>使用scp命令的时候，区分主机名和IP地址的代号。</li><li>这里master和slave没有实际意义，任意一台虚拟机都可完成收集/分发秘钥工作。</li></ul><h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><ul><li><a href="https://blog.csdn.net/diyxiaoshitou/article/details/52471097" target="_blank" rel="noopener">虚拟机中多个Linux系统之间配置免秘钥登录</a></li><li><a href="https://blog.csdn.net/diyxiaoshitou/article/details/52471097" target="_blank" rel="noopener">id_rsa id_pub 公钥与私钥</a></li></ul></the>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;&lt;excerpt in=&quot;&quot; index=&quot;&quot; |=&quot;&quot;&gt;&lt;br&gt;本文讲解多台虚拟机之间的免密登录和免密文件传输
+    
+    </summary>
+    
+      <category term="Linux" scheme="http://www.tensory.online/categories/Linux/"/>
+    
+    
+      <category term="Ubuntu" scheme="http://www.tensory.online/tags/Ubuntu/"/>
+    
+      <category term="SSH" scheme="http://www.tensory.online/tags/SSH/"/>
+    
+      <category term="rsa" scheme="http://www.tensory.online/tags/rsa/"/>
+    
+  </entry>
   
   <entry>
     <title>小小总结-新的征程</title>

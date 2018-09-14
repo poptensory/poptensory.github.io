@@ -15,18 +15,18 @@
 
 
 
-<meta name="description" content="毕业了才知道，上大学真舒服。">
-<meta name="keywords" content="编程,舒服">
+<meta name="description" content="本文讲解多台虚拟机之间的免密登录和免密文件传输">
+<meta name="keywords" content="Ubuntu,SSH,rsa">
 <meta property="og:type" content="article">
-<meta property="og:title" content="小小总结-新的征程">
-<meta property="og:url" content="http://www.tensory.online/2018/09/09/firstBlogAboutMasterLife/index.html">
+<meta property="og:title" content="配置多台虚拟机之间的免密通信">
+<meta property="og:url" content="http://www.tensory.online/2018/09/14/ssh_rsa/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="毕业了才知道，上大学真舒服。">
+<meta property="og:description" content="本文讲解多台虚拟机之间的免密登录和免密文件传输">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-09-09T05:52:57.269Z">
+<meta property="og:updated_time" content="2018-09-14T14:43:50.666Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="小小总结-新的征程">
-<meta name="twitter:description" content="毕业了才知道，上大学真舒服。">
+<meta name="twitter:title" content="配置多台虚拟机之间的免密通信">
+<meta name="twitter:description" content="本文讲解多台虚拟机之间的免密登录和免密文件传输">
 
 <link rel="apple-touch-icon" href= "/apple-touch-icon.png">
 
@@ -58,7 +58,7 @@
 <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
 
 
-<title>小小总结-新的征程 | Hexo</title>
+<title>配置多台虚拟机之间的免密通信 | Hexo</title>
 
 <script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
 <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
@@ -261,11 +261,11 @@
     </div>
     <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
 </nav>
-      <div class="body-wrap"><article id="post-firstBlogAboutMasterLife" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-ssh_rsa" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2018/09/09/firstBlogAboutMasterLife/" class="article-date">
-      <time datetime="2018-09-09T04:54:39.271Z" itemprop="datePublished">2018-09-09</time>
+      <a href="/2018/09/14/ssh_rsa/" class="article-date">
+      <time datetime="2018-09-14T13:28:35.997Z" itemprop="datePublished">2018-09-14</time>
 </a>
 
 
@@ -280,7 +280,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      小小总结-新的征程
+      配置多台虚拟机之间的免密通信
     </h1>
   
 
@@ -289,13 +289,13 @@
       <div class="article-info article-info-post">
         
     <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/生活/">生活</a>
+    <a class="article-category-link" href="/categories/Linux/">Linux</a>
     </div>
 
 
         
     <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/编程/">编程</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/舒服/">舒服</a></li></ul>
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/SSH/">SSH</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Ubuntu/">Ubuntu</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/rsa/">rsa</a></li></ul>
     </div>
 
         <div class="clearfix"></div>
@@ -305,16 +305,56 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <p><excerpt in="" index="" |=""><br>毕业了才知道，上大学真舒服。<a id="more"></a></excerpt></p>
+        <p><excerpt in="" index="" |=""><br>本文讲解多台虚拟机之间的免密登录和免密文件传输<a id="more"></a></excerpt></p>
 <the rest="" of="" contents="" |="" 余下全文="">
 
-<p>这个博客反反复复搭了3次，这次终于找到自己想要的主题，虽然存在一些问题和可以优化的细节，大部分功能已经配置齐全。第一篇正式的博客，总结一下近况。</p>
-<p>2018.3-2018.9这半年，知识增长的不多不少，体重依然稳定。总结了一些学习和生活的小感悟。</p>
-<h1 id="编程的好习惯"><a href="#编程的好习惯" class="headerlink" title="编程的好习惯"></a>编程的好习惯</h1><p>1.代码量较大的时候，做好单个函数/模块的测试，测试的数据应该多样化、复杂化，确保涵盖真实输入的所有可能。</p>
-<p>2.涉及大量代码、大量输入文件、结果文件时，写好文档，说明各个脚本、文本文件等的意义。</p>
-<h1 id="学习与选择"><a href="#学习与选择" class="headerlink" title="学习与选择"></a>学习与选择</h1><p>1.发挥自己的优势。明确自己的优势，是算法、数学、工程能力还是系统能力，也许样样干的都不错，但是一个人的时间和精力有限，学习所有的东西几乎不可能，所以务必选择自己擅长的领域/方向/方法，充分发挥自己的优势，规避自己不熟悉且学习成本高的那一块。</p>
-<p>2.在面临大大小小的选择的时候，不必马上做出选择，先冷静下来，避免“选择-做一段时间-放弃”这种情况，这样既浪费时间，又让自己养成了半途而废的畏惧心理。</p>
-<h1 id="好好生活"><a href="#好好生活" class="headerlink" title="好好生活"></a>好好生活</h1><p>保持热情，让自己舒服。庆幸自己做的工作不辣么讨厌，但是遇到正向反馈周期长的时候，总会失去兴趣。这个时候，可以写个博客，把自己学到的show出来，酷酷的，让自己成就感满满。新的篇章早已打开，努力不努力的鸡汤，说起来没有意义，总之，扎实做事，让自己活的舒服一点。还有…多听相声。</p>
+<p>在搭建Spark+Hadoop平台的时候，通常需要将文件从一个节点批量传递给其他节点，传递的方式是通过scp命令，但是每一次scp都需要对方口令，<br>才可以传输。为了方便文件传输，需要配置免密登录，这样在使用scp命令传输的时候，可以省去输入密码的繁琐过程。</p>
+<h1 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h1><p>假设有主机名为A、B和C三台虚拟机，IP地址分别为IPA、IPB和IPC。首先每台虚拟机都可以生成属于自己的秘钥（类似于每台虚拟机的口令），<br>假设生成的秘钥分别为pwdA、pwdB和pwdC，那么只要这些虚拟机相互交换这些秘钥，之后就可以了互相免密通信了。具体的做法是，举个例子，<br>A将pwdA放到一个文件X中，B和C将各自的秘钥也放到位于A的X中（这个过程中，B和C需要知道A的口令），现在A的X中含有A、B和C三台虚拟机<br>秘钥，然后由A将文件X分发给B和C，如此，A、B和C均具有另外二者的秘钥了，于是就可以进行免密登录和免密文件传输。</p>
+<h1 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h1><ul>
+<li>关闭防火墙</li>
+</ul>
+<p>在每台虚拟机的终端执行关闭防火墙的命令：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo ufw disable</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li>配置IP地址到代号的映射</li>
+</ul>
+<p>用IP地址标记某台主机不方便，因此可以为将主机IP地址映射为一个代号，方便命令的输入。例如A、B和C的代号可以分别是master、slave1和<br>slave2(此处master slave没有特别意义)。在每台虚拟机终端修改/etc/hosts文件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo vi /etc/hosts</span><br></pre></td></tr></table></figure></p>
+<p>在文件末尾追加如下内容：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">IPA		master</span><br><span class="line">IPB		slave1</span><br><span class="line">IPC		slave2</span><br></pre></td></tr></table></figure></p>
+<p>输入完毕，保存。注意，此步骤不是必要的，只是为了稍后秘钥传输和之后文件传输的便捷。</p>
+<h1 id="生成rsa秘钥"><a href="#生成rsa秘钥" class="headerlink" title="生成rsa秘钥"></a>生成rsa秘钥</h1><p>在每台虚拟机终端，生成各自的rsa秘钥。</p>
+<p>在任意一个目录新建.ssh目录，我们以在~目录下建立这个目录（这个目录以.开头，ls看不到，ls -a 命令可以看到）：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mkdir .ssh</span><br></pre></td></tr></table></figure></p>
+<p>进入该目录<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cd .ssh</span><br></pre></td></tr></table></figure></p>
+<p>生成rsa秘钥<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen -t rsa</span><br></pre></td></tr></table></figure></p>
+<p>(此处会询问是否设置密码，连续输入三个回车即可，即默认无密码ssh。如果是大型项目，需要设置密码)<br>然后会发现，在.ssh目录下，多了两个文件，分别名为  id_rsa和id_rsa.pub，分别为私钥和公钥，虚拟机之间需要交换的公钥。</p>
+<h1 id="收集秘钥"><a href="#收集秘钥" class="headerlink" title="收集秘钥"></a>收集秘钥</h1><p>现在，每台虚拟机都有了各自的秘钥，现在指定某台虚拟机，将公钥收集在一起。此处指定master，即虚拟机A。<br>在A的终端的.ssh目录下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat id_rsa.pub &gt;&gt; authorized_keys</span><br></pre></td></tr></table></figure></p>
+<p>即将A的公钥放到authorized_keys文件中。</p>
+<p>在B的终端的.ssh目录下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scp id_rsa.pub | ssh 主机名@master &apos;cat &gt;&gt; ~/.ssh/authorized_keys&apos;</span><br></pre></td></tr></table></figure></p>
+<p>（此处要输入A的口令）<br>即将B的公钥放到A的authorized_keys中</p>
+<p>在C的终端的.ssh目录下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scp id_rsa.pub | ssh 主机名@master &apos;cat &gt;&gt; ~/.ssh/authorized_keys&apos;</span><br></pre></td></tr></table></figure></p>
+<p>（此处要输入A的口令）<br>即将C的公钥放到A的authorized_keys中</p>
+<h1 id="分发秘钥"><a href="#分发秘钥" class="headerlink" title="分发秘钥"></a>分发秘钥</h1><p>现在A的authorized_keys中有了A、B和C的秘钥了，只需要将这个文件分发给B和C即可。<br>在A的终端分别执行：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scp authorized_keys | ssh B@slave1:~/.ssh/</span><br></pre></td></tr></table></figure>
+<p>（此处要输入B的口令）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scp authorized_keys | ssh C@slave2:~/.ssh/</span><br></pre></td></tr></table></figure>
+<p>（此处要输入C的口令）</p>
+<h1 id="完成配置"><a href="#完成配置" class="headerlink" title="完成配置"></a>完成配置</h1><p>现在A、B和C分别具有另外两者的秘钥了，可以使用 ssh 命令免密登录或scp免密传输文件，命令如下：</p>
+<ul>
+<li>在A的终端登录到B主机：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh slave1</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>（不用口令就可以登录到B的终端）</p>
+<ul>
+<li>在C的终端传文件给A主机：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scp file_dir/file_name | ssh A@master:/some_dir/</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>（不用口令）</p>
+<h1 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h1><ul>
+<li>使用scp命令的时候，区分主机名和IP地址的代号。</li>
+<li>这里master和slave没有实际意义，任意一台虚拟机都可完成收集/分发秘钥工作。</li>
+</ul>
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><ul>
+<li><a href="https://blog.csdn.net/diyxiaoshitou/article/details/52471097" target="_blank" rel="noopener">虚拟机中多个Linux系统之间配置免秘钥登录</a></li>
+<li><a href="https://blog.csdn.net/diyxiaoshitou/article/details/52471097" target="_blank" rel="noopener">id_rsa id_pub 公钥与私钥</a></li>
+</ul>
 </the>
       
     </div>
@@ -323,13 +363,13 @@
   
     
     <div class="copyright">
-        <p><span>本文标题:</span><a href="/2018/09/09/firstBlogAboutMasterLife/">小小总结-新的征程</a></p>
+        <p><span>本文标题:</span><a href="/2018/09/14/ssh_rsa/">配置多台虚拟机之间的免密通信</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">tensory</a></p>
-        <p><span>发布时间:</span>2018-09-09, 12:54:39</p>
-        <p><span>最后更新:</span>2018-09-09, 13:52:57</p>
+        <p><span>发布时间:</span>2018-09-14, 21:28:35</p>
+        <p><span>最后更新:</span>2018-09-14, 22:43:50</p>
         <p>
-            <span>原始链接:</span><a class="post-url" href="/2018/09/09/firstBlogAboutMasterLife/" title="小小总结-新的征程">http://www.tensory.online/2018/09/09/firstBlogAboutMasterLife/</a>
-            <span class="copy-path" data-clipboard-text="原文: http://www.tensory.online/2018/09/09/firstBlogAboutMasterLife/　　作者: tensory" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <span>原始链接:</span><a class="post-url" href="/2018/09/14/ssh_rsa/" title="配置多台虚拟机之间的免密通信">http://www.tensory.online/2018/09/14/ssh_rsa/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://www.tensory.online/2018/09/14/ssh_rsa/　　作者: tensory" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
             <script> var clipboard = new Clipboard('.copy-path'); </script>
         </p>
         <p>
@@ -341,12 +381,12 @@
 
     <nav id="article-nav">
         
-            <div id="article-nav-newer" class="article-nav-title">
-                <a href="/2018/09/14/ssh_rsa/">
-                    配置多台虚拟机之间的免密通信
+        
+            <div id="article-nav-older" class="article-nav-title">
+                <a href="/2018/09/09/firstBlogAboutMasterLife/">
+                    小小总结-新的征程
                 </a>
             </div>
-        
         
     </nav>
 
@@ -356,7 +396,7 @@
     <div id="toc" class="toc-article">
         <strong class="toc-title">文章目录</strong>
         
-            <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#编程的好习惯"><span class="toc-number">1.</span> <span class="toc-text">编程的好习惯</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#学习与选择"><span class="toc-number">2.</span> <span class="toc-text">学习与选择</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#好好生活"><span class="toc-number">3.</span> <span class="toc-text">好好生活</span></a></li></ol>
+            <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#原理"><span class="toc-number">1.</span> <span class="toc-text">原理</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#准备工作"><span class="toc-number">2.</span> <span class="toc-text">准备工作</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#生成rsa秘钥"><span class="toc-number">3.</span> <span class="toc-text">生成rsa秘钥</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#收集秘钥"><span class="toc-number">4.</span> <span class="toc-text">收集秘钥</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#分发秘钥"><span class="toc-number">5.</span> <span class="toc-text">分发秘钥</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#完成配置"><span class="toc-number">6.</span> <span class="toc-text">完成配置</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#注意"><span class="toc-number">7.</span> <span class="toc-text">注意</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#参考"><span class="toc-number">8.</span> <span class="toc-text">参考</span></a></li></ol>
         
     </div>
     <style>
@@ -392,7 +432,7 @@
         </div>
         <script>
             window._bd_share_config={
-                "common":{"bdSnsKey":{},"bdText":"小小总结-新的征程　| Hexo　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+                "common":{"bdSnsKey":{},"bdText":"配置多台虚拟机之间的免密通信　| Hexo　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
         </script>
     
 
@@ -412,15 +452,15 @@
 
     <div class="scroll" id="post-nav-button">
         
-            <a href="/2018/09/14/ssh_rsa/" title="上一篇: 配置多台虚拟机之间的免密通信">
-                <i class="fa fa-angle-left"></i>
-            </a>
+            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
         
 
         <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
 
         
-            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
+            <a href="/2018/09/09/firstBlogAboutMasterLife/" title="下一篇: 小小总结-新的征程">
+                <i class="fa fa-angle-right"></i>
+            </a>
         
     </div>
 
