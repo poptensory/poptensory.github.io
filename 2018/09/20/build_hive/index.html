@@ -36,7 +36,7 @@
 <meta property="og:image" content="https://raw.githubusercontent.com/poptensory/OnlineResource/master/19.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/poptensory/OnlineResource/master/20.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/poptensory/OnlineResource/master/21.png">
-<meta property="og:updated_time" content="2018-09-21T05:19:25.765Z">
+<meta property="og:updated_time" content="2018-09-29T11:58:39.833Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Hive搭建(集成mysql)">
 <meta name="twitter:description" content="本文详细讲述Hive的搭建过程。">
@@ -376,7 +376,8 @@
 <p>再次查看，正常，如下图：<br><img src="https://raw.githubusercontent.com/poptensory/OnlineResource/master/20.png" alt="select result"></p>
 <p><strong>6.查看HDFS</strong><br>进入hdfs的web界面，查看文件系统，可以看到对应的表，和对应的数据文件，如下图:<br><img src="https://raw.githubusercontent.com/poptensory/OnlineResource/master/21.png" alt="hdfs"></p>
 <p>把这个文件下载下来，查看，会发现和导入的那个文件内容完全相同。</p>
-<h1 id="结束"><a href="#结束" class="headerlink" title="结束"></a>结束</h1><p>至此，Hive配置、mysql集成、Hive测试完成。</p>
+<h1 id="简单的对比"><a href="#简单的对比" class="headerlink" title="简单的对比"></a>简单的对比</h1><p>为了对比性能，我写了一个Java封装SQL向MySQL写入数据的Demo。Java+SQL+MySQL写入30000条记录用时20分钟左右，<br>Hive导入8000000（800w）条相同格式的记录，用时14秒左右。写入数据库的效率相差几个数量级，而且Hive导入数据的代码只有一句，<br>Java需要读取*.txt、分割字符串、向表写入记录，代码繁琐。</p>
+<p>至此，Hive配置、mysql集成、Hive测试完成。</p>
 <h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p><a href="https://www.cnblogs.com/kinginme/p/7233315.html" target="_blank" rel="noopener">Hive安装与配置</a><br><a href="http://www.cnblogs.com/kinginme/p/7249533.html" target="_blank" rel="noopener">Hive集成mysql数据库</a><br><a href="https://www.cnblogs.com/dxxblog/p/8193967.html" target="_blank" rel="noopener">Hive安装与配置详解</a></p>
 
       
@@ -389,7 +390,7 @@
         <p><span>本文标题:</span><a href="/2018/09/20/build_hive/">Hive搭建(集成mysql)</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">tensory</a></p>
         <p><span>发布时间:</span>2018-09-20, 19:49:02</p>
-        <p><span>最后更新:</span>2018-09-21, 13:19:25</p>
+        <p><span>最后更新:</span>2018-09-29, 19:58:39</p>
         <p>
             <span>原始链接:</span><a class="post-url" href="/2018/09/20/build_hive/" title="Hive搭建(集成mysql)">http://www.tensory.online/2018/09/20/build_hive/</a>
             <span class="copy-path" data-clipboard-text="原文: http://www.tensory.online/2018/09/20/build_hive/　　作者: tensory" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
@@ -419,7 +420,7 @@
     <div id="toc" class="toc-article">
         <strong class="toc-title">文章目录</strong>
         
-            <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#准备工作"><span class="toc-number">1.</span> <span class="toc-text">准备工作</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Hive的配置"><span class="toc-number">2.</span> <span class="toc-text">Hive的配置</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#mysql的安装与集成"><span class="toc-number">3.</span> <span class="toc-text">mysql的安装与集成</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#初始化元数据"><span class="toc-number">4.</span> <span class="toc-text">初始化元数据</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#测试"><span class="toc-number">5.</span> <span class="toc-text">测试</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#结束"><span class="toc-number">6.</span> <span class="toc-text">结束</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#参考"><span class="toc-number">7.</span> <span class="toc-text">参考</span></a></li></ol>
+            <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#准备工作"><span class="toc-number">1.</span> <span class="toc-text">准备工作</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Hive的配置"><span class="toc-number">2.</span> <span class="toc-text">Hive的配置</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#mysql的安装与集成"><span class="toc-number">3.</span> <span class="toc-text">mysql的安装与集成</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#初始化元数据"><span class="toc-number">4.</span> <span class="toc-text">初始化元数据</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#测试"><span class="toc-number">5.</span> <span class="toc-text">测试</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#简单的对比"><span class="toc-number">6.</span> <span class="toc-text">简单的对比</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#参考"><span class="toc-number">7.</span> <span class="toc-text">参考</span></a></li></ol>
         
     </div>
     <style>
