@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.tensory.online/"/>
-  <updated>2018-09-29T12:58:12.600Z</updated>
+  <updated>2018-10-10T12:44:06.811Z</updated>
   <id>http://www.tensory.online/</id>
   
   <author>
@@ -15,6 +15,32 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>前端调试注意事项</title>
+    <link href="http://www.tensory.online/2018/10/10/web_debug/"/>
+    <id>http://www.tensory.online/2018/10/10/web_debug/</id>
+    <published>2018-10-10T12:35:06.389Z</published>
+    <updated>2018-10-10T12:44:06.811Z</updated>
+    
+    <content type="html"><![CDATA[<p><excerpt in="" index="" |=""><br>前端通过ajax测试后台API<a id="more"></a></excerpt></p><the rest="" of="" contents="" |="" 余下全文=""><h1 id="跨域访问"><a href="#跨域访问" class="headerlink" title="跨域访问"></a>跨域访问</h1><p>设置Chrome浏览器可以跨域，用WebStorm可以存储cookie，只用Chrome无法写入cookie。<br>涉及调用后台API的都要跨域！！！</p><h1 id="用好浏览器的F12"><a href="#用好浏览器的F12" class="headerlink" title="用好浏览器的F12"></a>用好浏览器的F12</h1><p>F12-network会显示http请求的细节，查找访问失败的原因。好好练习抓包分析。query的字段”name=xxx”的等号别漏掉了。</p><h1 id="刷新页面没有？"><a href="#刷新页面没有？" class="headerlink" title="刷新页面没有？"></a>刷新页面没有？</h1><p>多多刷新页面，经常清除Chrome缓存。利用alert等测试页面是否真正刷新。</p></the>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;&lt;excerpt in=&quot;&quot; index=&quot;&quot; |=&quot;&quot;&gt;&lt;br&gt;前端通过ajax测试后台API
+    
+    </summary>
+    
+      <category term="Web前端" scheme="http://www.tensory.online/categories/Web%E5%89%8D%E7%AB%AF/"/>
+    
+    
+      <category term="前端" scheme="http://www.tensory.online/tags/%E5%89%8D%E7%AB%AF/"/>
+    
+      <category term="API测试" scheme="http://www.tensory.online/tags/API%E6%B5%8B%E8%AF%95/"/>
+    
+      <category term="ajax" scheme="http://www.tensory.online/tags/ajax/"/>
+    
+  </entry>
   
   <entry>
     <title>Java读写文本文件</title>

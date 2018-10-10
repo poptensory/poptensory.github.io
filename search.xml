@@ -3,6 +3,31 @@
   
     
     <entry>
+      <title>前端调试注意事项</title>
+      <link href="/2018/10/10/web_debug/"/>
+      <url>/2018/10/10/web_debug/</url>
+      <content type="html"><![CDATA[<p><excerpt in="" index="" |=""><br>前端通过ajax测试后台API<a id="more"></a></excerpt></p><the rest="" of="" contents="" |="" 余下全文=""><h1 id="跨域访问"><a href="#跨域访问" class="headerlink" title="跨域访问"></a>跨域访问</h1><p>设置Chrome浏览器可以跨域，用WebStorm可以存储cookie，只用Chrome无法写入cookie。<br>涉及调用后台API的都要跨域！！！</p><h1 id="用好浏览器的F12"><a href="#用好浏览器的F12" class="headerlink" title="用好浏览器的F12"></a>用好浏览器的F12</h1><p>F12-network会显示http请求的细节，查找访问失败的原因。好好练习抓包分析。query的字段”name=xxx”的等号别漏掉了。</p><h1 id="刷新页面没有？"><a href="#刷新页面没有？" class="headerlink" title="刷新页面没有？"></a>刷新页面没有？</h1><p>多多刷新页面，经常清除Chrome缓存。利用alert等测试页面是否真正刷新。</p></the>]]></content>
+      
+      <categories>
+          
+          <category> Web前端 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 前端 </tag>
+            
+            <tag> API测试 </tag>
+            
+            <tag> ajax </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    <entry>
       <title>Java读写文本文件</title>
       <link href="/2018/09/29/java_read_write/"/>
       <url>/2018/09/29/java_read_write/</url>
