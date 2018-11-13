@@ -18,8 +18,8 @@
   
   <entry>
     <title>Python爬虫的一点笔记</title>
-    <link href="http://www.tensory.online/2018/11/13/python_spider/"/>
-    <id>http://www.tensory.online/2018/11/13/python_spider/</id>
+    <link href="http://www.tensory.online/2018/11/13/python-spider/"/>
+    <id>http://www.tensory.online/2018/11/13/python-spider/</id>
     <published>2018-11-13T13:12:09.996Z</published>
     <updated>2018-11-13T14:21:40.995Z</updated>
     
@@ -49,9 +49,9 @@
     <link href="http://www.tensory.online/2018/11/11/select-option/"/>
     <id>http://www.tensory.online/2018/11/11/select-option/</id>
     <published>2018-11-11T04:04:13.593Z</published>
-    <updated>2018-11-11T04:06:22.469Z</updated>
+    <updated>2018-11-13T14:36:07.029Z</updated>
     
-    <content type="html"><![CDATA[<p><excerpt in="" index="" |=""><br>简要说明如何设置<select>的选项值<a id="more"></a></select></excerpt></p><the rest="" of="" contents="" |="" 余下全文=""><p>错误</p><p><img src="https://raw.githubusercontent.com/poptensory/MarkdownPictures/master/v2-9c3af05bf2770df15047b331ec8b8226_r.jpg" alt="图的说明" title="可选标题"><br><img src="https://raw.githubusercontent.com/poptensory/MarkdownPictures/master/v2-c36bc7122703a7927de21b1b6522bf3d_r.jpg" alt="Alt text" title="Optional title"></p></the>]]></content>
+    <content type="html"><![CDATA[<p><excerpt in="" index="" |=""><br>简要说明如何设置<select>的选项值<a id="more"></a></select></excerpt></p><p><the rest="" of="" contents="" |="" 余下全文=""><br>11111</the></p>]]></content>
     
     <summary type="html">
     
