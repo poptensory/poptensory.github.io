@@ -15,13 +15,18 @@
 
 
 
-<meta property="og:type" content="website">
-<meta property="og:title" content="tensory&#39;s Blog">
-<meta property="og:url" content="http://www.tensory.online/tags/IO/index.html">
+<meta name="description" content="记录命令">
+<meta name="keywords" content="Zookeeper,Kafka">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Zookeeper和Kafka命令">
+<meta property="og:url" content="http://www.tensory.online/2018/11/29/zookeeper_kafka/index.html">
 <meta property="og:site_name" content="tensory&#39;s Blog">
+<meta property="og:description" content="记录命令">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-11-29T02:27:33.433Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="tensory&#39;s Blog">
+<meta name="twitter:title" content="Zookeeper和Kafka命令">
+<meta name="twitter:description" content="记录命令">
 
 <link rel="apple-touch-icon" href= "/apple-touch-icon.png">
 
@@ -53,7 +58,7 @@
 <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
 
 
-<title>Tag: IO | tensory&#39;s Blog</title>
+<title>Zookeeper和Kafka命令 | tensory&#39;s Blog</title>
 
 <script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
 <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
@@ -63,9 +68,9 @@
         fancybox: true,
         animate: true,
         isHome: false,
-        isPost: false,
+        isPost: true,
         isArchive: false,
-        isTag: true,
+        isTag: false,
         isCategory: false,
         fancybox_js: "//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.js",
         scrollreveal: "//cdn.bootcss.com/scrollReveal.js/3.1.4/scrollreveal.min.js",
@@ -266,60 +271,171 @@
     </div>
     <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
 </nav>
-      <div class="body-wrap">
+      <div class="body-wrap"><article id="post-zookeeper_kafka" class="article article-type-post" itemscope itemprop="blogPost">
   
-  
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2018" class="archive-year">2018</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-          <div class="article-meta">
-              <a href="/2018/09/29/java_read_write/" class="archive-article-date">
-      <time datetime="2018-09-29T12:12:21.273Z" itemprop="datePublished">09-29</time>
+    <div class="article-meta">
+      <a href="/2018/11/29/zookeeper_kafka/" class="article-date">
+      <time datetime="2018-11-29T02:11:07.597Z" itemprop="datePublished">2018-11-29</time>
 </a>
 
 
-        </div>
-         
+    </div>
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/09/29/java_read_write/">Java读写文本文件</a>
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Zookeeper和Kafka命令
     </h1>
   
 
-        <div class="article-info info-on-archive">
-          
+      </header>
+      
+      <div class="article-info article-info-post">
+        
     <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/编程语言/">编程语言</a>
+    <a class="article-category-link" href="/categories/大数据/">大数据</a>
     </div>
 
 
-          
+        
     <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/IO/">IO</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/文件读写/">文件读写</a></li></ul>
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Kafka/">Kafka</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Zookeeper/">Zookeeper</a></li></ul>
     </div>
 
-        </div>
         <div class="clearfix"></div>
-    </header>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <p><excerpt in="" index="" |=""><br>记录命令<a id="more"></a></excerpt></p>
+<p><the rest="" of="" contents="" |="" 余下全文=""></the></p>
+<h1 id="Zookeeper的启动与关闭"><a href="#Zookeeper的启动与关闭" class="headerlink" title="Zookeeper的启动与关闭"></a>Zookeeper的启动与关闭</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"># 在zookeeper/bin目录下运行</span><br><span class="line">./zkServer.sh start</span><br><span class="line"># jps可以查看到zookeeper对应的QuorumPeerMain进程</span><br><span class="line"></span><br><span class="line"># 查看该节点是leader/follower</span><br><span class="line">./zkServer.sh status</span><br><span class="line"></span><br><span class="line"># 关闭zookeeper</span><br><span class="line">./zkServer.sh stop</span><br></pre></td></tr></table></figure>
+<h1 id="Kafka的启动与关闭"><a href="#Kafka的启动与关闭" class="headerlink" title="Kafka的启动与关闭"></a>Kafka的启动与关闭</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"># 在kafka/bin目录下，启动Kafka</span><br><span class="line">./kafka-server-start.sh config/server.properties &amp;</span><br><span class="line"># jps可以查看kafka对应的Kafka进程</span><br><span class="line"></span><br><span class="line"># 关闭Kafka进程</span><br><span class="line">./kafka-server-stop.sh</span><br></pre></td></tr></table></figure>
+<h1 id="一个简单的启动消费者和生产者实例"><a href="#一个简单的启动消费者和生产者实例" class="headerlink" title="一个简单的启动消费者和生产者实例"></a>一个简单的启动消费者和生产者实例</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"># 在kafka/bin目录下</span><br><span class="line"># 创建一个topic</span><br><span class="line">./kafka-topics.sh --zookeeper master:2181,slave:2181 --topic test1 --replication-factor 2 --partitions 1 --create</span><br><span class="line"># 查看topic状态</span><br><span class="line">./kafka-topics.sh --zookeeper master:2181,slave:2181 --topic test1 --describe</span><br><span class="line"></span><br><span class="line"># 启动一个producer</span><br><span class="line">./kafka-console-producer.sh --broker-list master:9092,slave:9092 --topic test1</span><br><span class="line"></span><br><span class="line"># 启动一个consumer</span><br><span class="line">./kafka-console-consumer.sh --bootstrap-server master:9092,slave:9092 --from-beginning --topic test1</span><br><span class="line"># 注意：低版本Kafka启动consumer的命令为：kafka-console-consumer.sh --zookeeper master:2181,slave:2181 --from-beginning --topic test1</span><br><span class="line"></span><br><span class="line"># 都启动之后，在producer终端发布消息，在consumer终端可以消费消息</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    
   </div>
+  
+    
+    <div class="copyright">
+        <p><span>本文标题:</span><a href="/2018/11/29/zookeeper_kafka/">Zookeeper和Kafka命令</a></p>
+        <p><span>文章作者:</span><a href="/" title="回到主页">tensory</a></p>
+        <p><span>发布时间:</span>2018-11-29, 10:11:07</p>
+        <p><span>最后更新:</span>2018-11-29, 10:27:33</p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/2018/11/29/zookeeper_kafka/" title="Zookeeper和Kafka命令">http://www.tensory.online/2018/11/29/zookeeper_kafka/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://www.tensory.online/2018/11/29/zookeeper_kafka/　　作者: tensory" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
+        </p>
+    </div>
+
+
+
+    <nav id="article-nav">
+        
+        
+            <div id="article-nav-older" class="article-nav-title">
+                <a href="/2018/11/22/linux_user_group/">
+                    Linux用户管理
+                </a>
+            </div>
+        
+    </nav>
+
+  
 </article>
-  
-  
-    </div></section>
-  
+
+    <div id="toc" class="toc-article">
+        <strong class="toc-title">文章目录</strong>
+        
+            <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Zookeeper的启动与关闭"><span class="toc-number">1.</span> <span class="toc-text">Zookeeper的启动与关闭</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Kafka的启动与关闭"><span class="toc-number">2.</span> <span class="toc-text">Kafka的启动与关闭</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#一个简单的启动消费者和生产者实例"><span class="toc-number">3.</span> <span class="toc-text">一个简单的启动消费者和生产者实例</span></a></li></ol>
+        
+    </div>
+    <style>
+        .left-col .switch-btn,
+        .left-col .switch-area {
+            display: none;
+        }
+        .toc-level-3 i,
+        .toc-level-3 ol {
+            display: none !important;
+        }
+    </style>
+
+    <input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+
+    <script>
+        yiliaConfig.toc = ["隐藏目录", "显示目录", !!"false"];
+    </script>
+
+
+
+    
+<div class="share">
+    
+        <div class="bdsharebuttonbox">
+            <a href="#" class="fa fa-twitter bds_twi" data-cmd="twi" title="分享到推特"></a>
+            <a href="#" class="fa fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+            <a href="#" class="fa fa-qq bds_sqq" data-cmd="sqq" title="分享给 QQ 好友"></a>
+            <a href="#" class="fa fa-files-o bds_copy" data-cmd="copy" title="复制网址"></a>
+            <a href="#" class="fa fa fa-envelope-o bds_mail" data-cmd="mail" title="通过邮件分享"></a>
+            <a href="#" class="fa fa-weixin bds_weixin" data-cmd="weixin" title="生成文章二维码"></a>
+            <a href="#" class="fa fa-share-alt bds_more" data-cmd="more"></i></a>
+        </div>
+        <script>
+            window._bd_share_config={
+                "common":{"bdSnsKey":{},"bdText":"Zookeeper和Kafka命令　| tensory's Blog　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+        </script>
+    
+
+    
+</div>
+
+
+
+
+
+
 
     
 
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
+        
+
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+
+        
+            <a href="/2018/11/22/linux_user_group/" title="下一篇: Linux用户管理">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2018/11/29/zookeeper_kafka/">Zookeeper和Kafka命令</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/11/22/linux_user_group/">Linux用户管理</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/11/14/python_spider/">Python爬虫笔记</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/11/14/git_to_github/">将本地项目添加到Git版本管理并关联Github仓库</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/11/03/python-decorator-1/">Python装饰器(初步)</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/10/25/linux_change_username/">Linux修改用户名和主机名</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/10/25/jQuery_func/">获取带有jQuery的AJAX的函数返回值</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/10/15/bootstrap_modal/">bootstrap模态框</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/10/15/jQuery_page/">jQuery+bootstrap翻页</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/10/10/web_debug/">前端调试注意事项</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/29/java_read_write/">Java读写文本文件</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/20/build_hive/">Hive搭建(集成mysql)</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/14/ssh_rsa/">配置多台虚拟机之间的免密通信</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/09/09/first_blog/">小小总结-新的征程</a></li></ul>
+
+
+
+
+    <script>
+        
+    </script>
 </div>
       <footer id="footer">
     <div class="outer">
