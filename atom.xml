@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.tensory.online/"/>
-  <updated>2018-12-14T03:55:42.972Z</updated>
+  <updated>2019-01-09T14:13:35.790Z</updated>
   <id>http://www.tensory.online/</id>
   
   <author>
@@ -15,6 +15,32 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Scala编写Spark程序Windows本地调试、打jar包、提交远程集群运行</title>
+    <link href="http://www.tensory.online/2018/12/18/run_scala_on_spark/"/>
+    <id>http://www.tensory.online/2018/12/18/run_scala_on_spark/</id>
+    <published>2018-12-18T14:36:47.660Z</published>
+    <updated>2019-01-09T14:13:35.790Z</updated>
+    
+    <content type="html"><![CDATA[<p><excerpt in="" index="" |=""><br>本文详述Scala本地debug、打jar包、提交到远程集群运行。<a id="more"></a></excerpt></p><the rest="" of="" contents="" |="" 余下全文=""><h1 id="开发环境"><a href="#开发环境" class="headerlink" title="开发环境"></a>开发环境</h1><p>编译器：InteliJ IDEA<br>JD版本：1.8<br>Spark版本：2.2.2<br>Hadoop版本：2.7.3<br>Scala版本：2.11.8</p><p>注意：</p><ol><li>IDEA自带Mave,sbt等工程管理工具，非常方便，所以选择IDEA。</li><li>Windows本地调试，需要JDk，Spark，Hadoop，Scala，版本应当与集群版本保持一致。Spark和Hadoop的版本，只要不相差太大就没问题，但是本地和集群的JDK、Scala必须最好对应保持版本一致。</li></ol><h1 id="本地调试纯Scala程序"><a href="#本地调试纯Scala程序" class="headerlink" title="本地调试纯Scala程序"></a>本地调试纯Scala程序</h1><ol><li><p>先下载JDK，Spark，Hadoop的安装包，解压到某个位置。</p></li><li><p>配置环境变量<br>配置JAVA_HOME, SPARK_HOME, HADOOP_HOME<br>在PATH这个变量中，添加JDK,Spark, Hadoop的bin目录对应的目录，如下图所示：<br><img src="https://raw.githubusercontent.com/poptensory/OnlineResource/master/FigIDEAScala/IDEA_Scala_env_var.png" alt="Env" title="Env"></p></li></ol><p>测试是否配置好环境变量，操作及正确反馈如下图：<br>JDK:<br><img src="https://raw.githubusercontent.com/poptensory/OnlineResource/master/FigIDEAScala/IDEA_Scala_java-cmd.png" alt="Java" title="Java"></p><p>Spark:<br><img src="https://raw.githubusercontent.com/poptensory/OnlineResource/master/FigIDEAScala/IDEA_Scala_spark-cmd.png" alt="Spark" title="Spark"></p><p>Hadoop:<br><img src="https://raw.githubusercontent.com/poptensory/OnlineResource/master/FigIDEAScala/IDEA_Scala_hadoop-cmd.png" alt="Hadoop" title="Hadoop"></p><ol start="3"><li>IDEA中建立Scala项目<br>step1: 建立一个项目<br>Scala&gt;IDEA&gt;Next，建立Scala项目。<br><img src="https://raw.githubusercontent.com/poptensory/OnlineResource/master/FigIDEAScala/IDEA_Scala_1.png" alt="Scala" title="Scala"><br>step2: 配置<br>特定注意配置好JDK路径，Scala路径和版本问题<br><img src="https://raw.githubusercontent.com/poptensory/OnlineResource/master/FigIDEAScala/IDEA_Scala_2.png" alt="Scala" title="Scala"><br>选择Scala源文件(含有bin等目录的Scala文件)。<br><img src="https://raw.githubusercontent.com/poptensory/OnlineResource/master/FigIDEAScala/IDEA_Scala_3.png" alt="Scala" title="Scala"><br><img src="https://raw.githubusercontent.com/poptensory/OnlineResource/master/FigIDEAScala/IDEA_Scala_4.png" alt="Scala" title="Scala"><br>建立目录，设置Sources源文件目录。<br><img src="https://raw.githubusercontent.com/poptensory/OnlineResource/master/FigIDEAScala/IDEA_Scala_5.png" alt="Scala" title="Scala"><br>建立一个Scala类。<br><img src="https://raw.githubusercontent.com/poptensory/OnlineResource/master/FigIDEAScala/IDEA_Scala_6.png" alt="Scala" title="Scala"><br><img src="https://raw.githubusercontent.com/poptensory/OnlineResource/master/FigIDEAScala/IDEA_Scala_7.png" alt="Scala" title="Scala"><br>编写对应代码，并运行。<br>可以看出，可以代码通过。<br><img src="https://raw.githubusercontent.com/poptensory/OnlineResource/master/FigIDEAScala/IDEA_Scala_8.png" alt="Scala" title="Scala"></li></ol><p>上面的是纯粹的Scala程序，不需要Hadoop或者Spark也可以正常运行。</p><h1 id="本地调试Scala-Spark程序"><a href="#本地调试Scala-Spark程序" class="headerlink" title="本地调试Scala Spark程序"></a>本地调试Scala Spark程序</h1><p>下面我们将代码编写更复杂一点。<br>step1: 导入Spark的jar包<br><img src="https://raw.githubusercontent.com/poptensory/OnlineResource/master/FigIDEAScala/IDEA_Scala_9.png" alt="Scala" title="Scala"><br>step2: 选择$SPARK_HOME/jars中的所有包。<br><img src="https://raw.githubusercontent.com/poptensory/OnlineResource/master/FigIDEAScala/IDEA_Scala_10.png" alt="Scala" title="Scala"><br>Apply &gt; OK<br><img src="https://raw.githubusercontent.com/poptensory/OnlineResource/master/FigIDEAScala/IDEA_Scala_11.png" alt="Scala" title="Scala"><br>编写带有SparkContext的Scala程序，创建sc。运行。可以看到，能够正常运行Spark程序了。<br><img src="https://raw.githubusercontent.com/poptensory/OnlineResource/master/FigIDEAScala/IDEA_Scala_12.png" alt="Scala" title="Scala"></p><h1 id="打包与提交到远程集群"><a href="#打包与提交到远程集群" class="headerlink" title="打包与提交到远程集群"></a>打包与提交到远程集群</h1><ol><li>打包<br>步骤如下：<br><img src="https://raw.githubusercontent.com/poptensory/OnlineResource/master/FigIDEAScala/IDEA_Scala_13.png" alt="Scala" title="Scala"><br><img src="https://raw.githubusercontent.com/poptensory/OnlineResource/master/FigIDEAScala/IDEA_Scala_14.png" alt="Scala" title="Scala"><br><img src="https://raw.githubusercontent.com/poptensory/OnlineResource/master/FigIDEAScala/IDEA_Scala_15.png" alt="Scala" title="Scala"><br><img src="https://raw.githubusercontent.com/poptensory/OnlineResource/master/FigIDEAScala/IDEA_Scala_16.png" alt="Scala" title="Scala"><br>如下图，可以看到out/artifacts/xxx/目录下，多了一个jar包：Scala2JAR.jar<br><img src="https://raw.githubusercontent.com/poptensory/OnlineResource/master/FigIDEAScala/IDEA_Scala_17.png" alt="Scala" title="Scala"><br>2.提交运行<br>得到这个jar包之后，利用WinSCP等工具，将文件上传到集群上。然后输入如下命令运行。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">spark-submit --master spark://master_ip:7077 --class &quot;类名&quot; jar包.jar</span><br></pre></td></tr></table></figure></li></ol><p><img src="https://raw.githubusercontent.com/poptensory/OnlineResource/master/FigIDEAScala/IDEA_Scala_18.png" alt="Scala" title="Scala"><br>出现如上的INFO-Level的日志，不报错，就说明成功运行。</p><h1 id="可能出现的Bug"><a href="#可能出现的Bug" class="headerlink" title="可能出现的Bug"></a>可能出现的Bug</h1><p>如果出现如下错误：最可能的原因是，本地和集群的Spark或Scala版本不一致造成的。<br><img src="https://raw.githubusercontent.com/poptensory/OnlineResource/master/FigIDEAScala/IDEA_Scala_bug.png" alt="Scala" title="Scala"></p><h1 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h1><p>将近一个月没写博客了，以后多挤点时间系统学习一些技能，知其所以然，争取坚持每周至少一篇总结的博客。加油！</p><p>累了可以听听左上角的相声。</p></the>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;&lt;excerpt in=&quot;&quot; index=&quot;&quot; |=&quot;&quot;&gt;&lt;br&gt;本文详述Scala本地debug、打jar包、提交到远程集群运行。
+    
+    </summary>
+    
+      <category term="大数据" scheme="http://www.tensory.online/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/"/>
+    
+    
+      <category term="Scala" scheme="http://www.tensory.online/tags/Scala/"/>
+    
+      <category term="Spark" scheme="http://www.tensory.online/tags/Spark/"/>
+    
+      <category term="debug" scheme="http://www.tensory.online/tags/debug/"/>
+    
+  </entry>
   
   <entry>
     <title>Hive和Hbase对比</title>
@@ -86,9 +112,9 @@
       <category term="Linux" scheme="http://www.tensory.online/categories/Linux/"/>
     
     
-      <category term="Linux" scheme="http://www.tensory.online/tags/Linux/"/>
-    
       <category term="用户管理" scheme="http://www.tensory.online/tags/%E7%94%A8%E6%88%B7%E7%AE%A1%E7%90%86/"/>
+    
+      <category term="Linux" scheme="http://www.tensory.online/tags/Linux/"/>
     
       <category term="运维" scheme="http://www.tensory.online/tags/%E8%BF%90%E7%BB%B4/"/>
     
@@ -190,9 +216,9 @@
       <category term="Linux" scheme="http://www.tensory.online/categories/Linux/"/>
     
     
-      <category term="用户管理" scheme="http://www.tensory.online/tags/%E7%94%A8%E6%88%B7%E7%AE%A1%E7%90%86/"/>
-    
       <category term="Ubuntu" scheme="http://www.tensory.online/tags/Ubuntu/"/>
+    
+      <category term="用户管理" scheme="http://www.tensory.online/tags/%E7%94%A8%E6%88%B7%E7%AE%A1%E7%90%86/"/>
     
   </entry>
   
@@ -346,9 +372,9 @@
     
       <category term="Hive" scheme="http://www.tensory.online/tags/Hive/"/>
     
-      <category term="Hadoop" scheme="http://www.tensory.online/tags/Hadoop/"/>
-    
       <category term="Linux" scheme="http://www.tensory.online/tags/Linux/"/>
+    
+      <category term="Hadoop" scheme="http://www.tensory.online/tags/Hadoop/"/>
     
   </entry>
   

@@ -15,18 +15,42 @@
 
 
 
-<meta name="description" content="Python爬虫的一点笔记">
-<meta name="keywords" content="Python,爬虫">
+<meta name="description" content="本文详述Scala本地debug、打jar包、提交到远程集群运行。">
+<meta name="keywords" content="Scala,Spark,debug">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Python爬虫笔记">
-<meta property="og:url" content="http://www.tensory.online/2018/11/14/python_spider/index.html">
+<meta property="og:title" content="Scala编写Spark程序Windows本地调试、打jar包、提交远程集群运行">
+<meta property="og:url" content="http://www.tensory.online/2018/12/18/run_scala_on_spark/index.html">
 <meta property="og:site_name" content="tensory&#39;s Blog">
-<meta property="og:description" content="Python爬虫的一点笔记">
+<meta property="og:description" content="本文详述Scala本地debug、打jar包、提交到远程集群运行。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-11-14T12:55:15.808Z">
+<meta property="og:image" content="https://raw.githubusercontent.com/poptensory/OnlineResource/master/FigIDEAScala/IDEA_Scala_env_var.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/poptensory/OnlineResource/master/FigIDEAScala/IDEA_Scala_java-cmd.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/poptensory/OnlineResource/master/FigIDEAScala/IDEA_Scala_spark-cmd.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/poptensory/OnlineResource/master/FigIDEAScala/IDEA_Scala_hadoop-cmd.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/poptensory/OnlineResource/master/FigIDEAScala/IDEA_Scala_1.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/poptensory/OnlineResource/master/FigIDEAScala/IDEA_Scala_2.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/poptensory/OnlineResource/master/FigIDEAScala/IDEA_Scala_3.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/poptensory/OnlineResource/master/FigIDEAScala/IDEA_Scala_4.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/poptensory/OnlineResource/master/FigIDEAScala/IDEA_Scala_5.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/poptensory/OnlineResource/master/FigIDEAScala/IDEA_Scala_6.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/poptensory/OnlineResource/master/FigIDEAScala/IDEA_Scala_7.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/poptensory/OnlineResource/master/FigIDEAScala/IDEA_Scala_8.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/poptensory/OnlineResource/master/FigIDEAScala/IDEA_Scala_9.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/poptensory/OnlineResource/master/FigIDEAScala/IDEA_Scala_10.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/poptensory/OnlineResource/master/FigIDEAScala/IDEA_Scala_11.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/poptensory/OnlineResource/master/FigIDEAScala/IDEA_Scala_12.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/poptensory/OnlineResource/master/FigIDEAScala/IDEA_Scala_13.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/poptensory/OnlineResource/master/FigIDEAScala/IDEA_Scala_14.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/poptensory/OnlineResource/master/FigIDEAScala/IDEA_Scala_15.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/poptensory/OnlineResource/master/FigIDEAScala/IDEA_Scala_16.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/poptensory/OnlineResource/master/FigIDEAScala/IDEA_Scala_17.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/poptensory/OnlineResource/master/FigIDEAScala/IDEA_Scala_18.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/poptensory/OnlineResource/master/FigIDEAScala/IDEA_Scala_bug.png">
+<meta property="og:updated_time" content="2019-01-09T14:13:35.790Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Python爬虫笔记">
-<meta name="twitter:description" content="Python爬虫的一点笔记">
+<meta name="twitter:title" content="Scala编写Spark程序Windows本地调试、打jar包、提交远程集群运行">
+<meta name="twitter:description" content="本文详述Scala本地debug、打jar包、提交到远程集群运行。">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/poptensory/OnlineResource/master/FigIDEAScala/IDEA_Scala_env_var.png">
 
 <link rel="apple-touch-icon" href= "/apple-touch-icon.png">
 
@@ -58,7 +82,7 @@
 <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
 
 
-<title>Python爬虫笔记 | tensory&#39;s Blog</title>
+<title>Scala编写Spark程序Windows本地调试、打jar包、提交远程集群运行 | tensory&#39;s Blog</title>
 
 <script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
 <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
@@ -273,11 +297,11 @@
     </div>
     <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
 </nav>
-      <div class="body-wrap"><article id="post-python_spider" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-run_scala_on_spark" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2018/11/14/python_spider/" class="article-date">
-      <time datetime="2018-11-14T12:36:43.946Z" itemprop="datePublished">2018-11-14</time>
+      <a href="/2018/12/18/run_scala_on_spark/" class="article-date">
+      <time datetime="2018-12-18T14:36:47.660Z" itemprop="datePublished">2018-12-18</time>
 </a>
 
 
@@ -292,7 +316,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      Python爬虫笔记
+      Scala编写Spark程序Windows本地调试、打jar包、提交远程集群运行
     </h1>
   
 
@@ -301,13 +325,13 @@
       <div class="article-info article-info-post">
         
     <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/Python/">Python</a>
+    <a class="article-category-link" href="/categories/大数据/">大数据</a>
     </div>
 
 
         
     <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Python/">Python</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/爬虫/">爬虫</a></li></ul>
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Scala/">Scala</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Spark/">Spark</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/debug/">debug</a></li></ul>
     </div>
 
         <div class="clearfix"></div>
@@ -317,10 +341,38 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <p><excerpt in="" index="" |=""><br>Python爬虫的一点笔记<a id="more"></a></excerpt></p>
+        <p><excerpt in="" index="" |=""><br>本文详述Scala本地debug、打jar包、提交到远程集群运行。<a id="more"></a></excerpt></p>
 <the rest="" of="" contents="" |="" 余下全文="">
 
-<p>包括requests和urllib的使用，设置常用的反爬虫机制。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># @Encoding: utf-8</span></span><br><span class="line"><span class="comment"># @Author  : tensory</span></span><br><span class="line"><span class="comment"># @Time    : 2018/11/14 20:40</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"><span class="keyword">import</span> random</span><br><span class="line"><span class="keyword">import</span> urllib</span><br><span class="line"><span class="keyword">from</span> bs4 <span class="keyword">import</span> BeautifulSoup</span><br><span class="line"></span><br><span class="line">cookie = <span class="string">'xxx'</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># User-Agent</span></span><br><span class="line">ua1 = <span class="string">"User-Agent:Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_6_8; en-us) AppleWebKit/534.50 (KHTML, like Gecko) Version/5.1 Safari/534.50"</span></span><br><span class="line">ua2 = <span class="string">"User-Agent:Mozilla/5.0 (Windows; U; Windows NT 6.1; en-us) AppleWebKit/534.50 (KHTML, like Gecko) Version/5.1 Safari/534.50"</span></span><br><span class="line">ua3 = <span class="string">"User-Agent:Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; Trident/5.0"</span></span><br><span class="line">ua4 = <span class="string">"User-Agent:Mozilla/4.0 (compatible; MSIE 8.0; Windows NT 6.0; Trident/4.0)"</span></span><br><span class="line">ua5 = <span class="string">"User-Agent:Mozilla/5.0 (Windows NT 6.1; rv:2.0.1) Gecko/20100101 Firefox/4.0.1"</span></span><br><span class="line">ua6 = <span class="string">"User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_7_0) AppleWebKit/535.11 (KHTML, like Gecko) Chrome/17.0.963.56 Safari/535.11"</span></span><br><span class="line">ua_list = [ua1, ua2, ua3, ua4, ua5, ua6]</span><br><span class="line"></span><br><span class="line"><span class="comment"># IP代理池</span></span><br><span class="line">ip_list = [<span class="string">'58.56.149.198:53281'</span>, <span class="string">'123.7.61.8:53281'</span>, <span class="string">'115.46.96.46:8123'</span>, <span class="string">'171.38.24.185:8123'</span>, <span class="string">'171.38.24.185:8123'</span>, </span><br><span class="line">           <span class="string">'111.75.223.9:35918'</span>, <span class="string">'116.192.175.93:41944'</span>, <span class="string">'36.33.32.158:59019'</span>, <span class="string">'1.198.72.4:53128'</span>, <span class="string">'49.71.81.43:3128'</span>, </span><br><span class="line">           <span class="string">'60.216.101.46:59351'</span>, <span class="string">'119.1.97.193:60916'</span>, <span class="string">'182.88.89.7:8123'</span>, <span class="string">'114.99.31.129:34596'</span>, <span class="string">'42.59.86.81:1133'</span>, <span class="string">'182.88.89.189:8123'</span>,</span><br><span class="line">           <span class="string">'121.237.136.34:18118'</span>, <span class="string">'119.254.94.71:42788'</span>, <span class="string">'175.148.71.214:1133'</span>, <span class="string">'175.155.138.60:1133'</span>, <span class="string">'182.88.89.4:8123'</span>, <span class="string">'121.31.192.27:8123'</span>,</span><br><span class="line">           <span class="string">'221.239.86.26:46164'</span>, <span class="string">'220.166.195.160:8118'</span>, <span class="string">'114.225.170.44:53128'</span>, <span class="string">'180.168.13.26:8000'</span>, <span class="string">'182.207.232.135:50465'</span>, </span><br><span class="line">           <span class="string">'121.225.26.169:3128'</span>, <span class="string">'124.232.133.201:30819'</span>, <span class="string">'112.67.128.30:8123'</span>, <span class="string">'210.22.176.146:32153'</span>, <span class="string">'171.38.25.79:8123'</span>, <span class="string">'180.119.65.184:3128'</span>, </span><br><span class="line">           <span class="string">'221.229.18.126:3128'</span>, <span class="string">'106.75.226.36:808'</span>, <span class="string">'115.223.82.100:8010'</span>, <span class="string">'42.51.195.184:808'</span>, <span class="string">'182.88.134.189:8123'</span>, <span class="string">'175.165.129.155:1133'</span>, </span><br><span class="line">           <span class="string">'221.1.200.242:38652'</span>, <span class="string">'222.76.204.110:808'</span>, <span class="string">'116.192.171.51:48565'</span>, <span class="string">'122.241.73.67:808'</span>, <span class="string">'112.98.126.100:41578'</span>, <span class="string">'115.46.65.155:8123'</span>, </span><br><span class="line">           <span class="string">'113.108.242.36:47713'</span>, <span class="string">'113.103.14.36:3128'</span>, <span class="string">'180.119.65.76:3128'</span>, <span class="string">'101.92.105.68:8123'</span>, <span class="string">'221.229.18.170:808'</span>, <span class="string">'171.39.78.245:8123'</span>, </span><br><span class="line">           <span class="string">'61.170.179.89:50799'</span>, <span class="string">'117.114.149.10:43727'</span>, <span class="string">'211.147.239.101:57281'</span>, <span class="string">'219.147.8.148:8000'</span>,</span><br><span class="line">           <span class="string">'115.46.98.154:8123'</span>, <span class="string">'42.59.87.72:1133'</span>, <span class="string">'183.172.208.129:8118'</span>, <span class="string">'218.59.228.18:61976'</span>, <span class="string">'140.207.25.114:41471'</span>]</span><br><span class="line"></span><br><span class="line">url = <span class="string">"xxxxxxxxxxxxxxxxx"</span></span><br><span class="line">ua = ua_list[random.randint(<span class="number">0</span>, len(ua_list) - <span class="number">1</span>)]</span><br><span class="line">ip = <span class="string">"https://"</span>+ip_list[random.randint(<span class="number">0</span>, len(ip_list)<span class="number">-1</span>)]</span><br><span class="line">proxy = &#123;<span class="string">"https"</span>:ip&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 设置headers，包括UA, Cookie, Connection</span></span><br><span class="line">headers = &#123;</span><br><span class="line">    <span class="string">"User-Agent"</span>: ua,</span><br><span class="line">    <span class="string">"Cookie"</span>: cookie,</span><br><span class="line">    <span class="string">"Connection"</span>: <span class="string">"close"</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 随机休眠</span></span><br><span class="line">time.sleep(random.random())</span><br><span class="line"><span class="comment"># 获取HTML(代理在此设置)</span></span><br><span class="line">html = requests.get(url, headers=headers, proxy=proxy).content.decode()</span><br><span class="line"></span><br><span class="line"><span class="comment"># 解析</span></span><br><span class="line">soup = BeautifulSoup(html, <span class="string">'lxml'</span>)</span><br><span class="line">res = []</span><br><span class="line"><span class="keyword">for</span> link <span class="keyword">in</span> soup.find_all(<span class="string">"td"</span>, class_=<span class="string">"hall-time"</span>):</span><br><span class="line">    res.append(link.contents[<span class="number">1</span>].string)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 如果是Ajax异步加载的</span></span><br><span class="line">url = <span class="string">""</span></span><br><span class="line">time.sleep(random.random())</span><br><span class="line">req = urllib.request.Request(url)</span><br><span class="line">req.add_header(<span class="string">'X-Requested-With'</span>, <span class="string">'XMLHttpRequest'</span>)</span><br><span class="line">response = urllib.request.urlopen(req)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 难以爬取的网站例如动态加载的页面，可以通过PhantomJS+Selenium模拟用户行为，执行下载得到的HTML+JS代码</span></span><br></pre></td></tr></table></figure></p>
+
+<h1 id="开发环境"><a href="#开发环境" class="headerlink" title="开发环境"></a>开发环境</h1><p>编译器：InteliJ IDEA<br>JD版本：1.8<br>Spark版本：2.2.2<br>Hadoop版本：2.7.3<br>Scala版本：2.11.8</p>
+<p>注意：</p>
+<ol>
+<li>IDEA自带Mave,sbt等工程管理工具，非常方便，所以选择IDEA。</li>
+<li>Windows本地调试，需要JDk，Spark，Hadoop，Scala，版本应当与集群版本保持一致。Spark和Hadoop的版本，只要不相差太大就没问题，但是本地和集群的JDK、Scala必须最好对应保持版本一致。</li>
+</ol>
+<h1 id="本地调试纯Scala程序"><a href="#本地调试纯Scala程序" class="headerlink" title="本地调试纯Scala程序"></a>本地调试纯Scala程序</h1><ol>
+<li><p>先下载JDK，Spark，Hadoop的安装包，解压到某个位置。</p>
+</li>
+<li><p>配置环境变量<br>配置JAVA_HOME, SPARK_HOME, HADOOP_HOME<br>在PATH这个变量中，添加JDK,Spark, Hadoop的bin目录对应的目录，如下图所示：<br><img src="https://raw.githubusercontent.com/poptensory/OnlineResource/master/FigIDEAScala/IDEA_Scala_env_var.png" alt="Env" title="Env"></p>
+</li>
+</ol>
+<p>测试是否配置好环境变量，操作及正确反馈如下图：<br>JDK:<br><img src="https://raw.githubusercontent.com/poptensory/OnlineResource/master/FigIDEAScala/IDEA_Scala_java-cmd.png" alt="Java" title="Java"></p>
+<p>Spark:<br><img src="https://raw.githubusercontent.com/poptensory/OnlineResource/master/FigIDEAScala/IDEA_Scala_spark-cmd.png" alt="Spark" title="Spark"></p>
+<p>Hadoop:<br><img src="https://raw.githubusercontent.com/poptensory/OnlineResource/master/FigIDEAScala/IDEA_Scala_hadoop-cmd.png" alt="Hadoop" title="Hadoop"></p>
+<ol start="3">
+<li>IDEA中建立Scala项目<br>step1: 建立一个项目<br>Scala&gt;IDEA&gt;Next，建立Scala项目。<br><img src="https://raw.githubusercontent.com/poptensory/OnlineResource/master/FigIDEAScala/IDEA_Scala_1.png" alt="Scala" title="Scala"><br>step2: 配置<br>特定注意配置好JDK路径，Scala路径和版本问题<br><img src="https://raw.githubusercontent.com/poptensory/OnlineResource/master/FigIDEAScala/IDEA_Scala_2.png" alt="Scala" title="Scala"><br>选择Scala源文件(含有bin等目录的Scala文件)。<br><img src="https://raw.githubusercontent.com/poptensory/OnlineResource/master/FigIDEAScala/IDEA_Scala_3.png" alt="Scala" title="Scala"><br><img src="https://raw.githubusercontent.com/poptensory/OnlineResource/master/FigIDEAScala/IDEA_Scala_4.png" alt="Scala" title="Scala"><br>建立目录，设置Sources源文件目录。<br><img src="https://raw.githubusercontent.com/poptensory/OnlineResource/master/FigIDEAScala/IDEA_Scala_5.png" alt="Scala" title="Scala"><br>建立一个Scala类。<br><img src="https://raw.githubusercontent.com/poptensory/OnlineResource/master/FigIDEAScala/IDEA_Scala_6.png" alt="Scala" title="Scala"><br><img src="https://raw.githubusercontent.com/poptensory/OnlineResource/master/FigIDEAScala/IDEA_Scala_7.png" alt="Scala" title="Scala"><br>编写对应代码，并运行。<br>可以看出，可以代码通过。<br><img src="https://raw.githubusercontent.com/poptensory/OnlineResource/master/FigIDEAScala/IDEA_Scala_8.png" alt="Scala" title="Scala"></li>
+</ol>
+<p>上面的是纯粹的Scala程序，不需要Hadoop或者Spark也可以正常运行。</p>
+<h1 id="本地调试Scala-Spark程序"><a href="#本地调试Scala-Spark程序" class="headerlink" title="本地调试Scala Spark程序"></a>本地调试Scala Spark程序</h1><p>下面我们将代码编写更复杂一点。<br>step1: 导入Spark的jar包<br><img src="https://raw.githubusercontent.com/poptensory/OnlineResource/master/FigIDEAScala/IDEA_Scala_9.png" alt="Scala" title="Scala"><br>step2: 选择$SPARK_HOME/jars中的所有包。<br><img src="https://raw.githubusercontent.com/poptensory/OnlineResource/master/FigIDEAScala/IDEA_Scala_10.png" alt="Scala" title="Scala"><br>Apply &gt; OK<br><img src="https://raw.githubusercontent.com/poptensory/OnlineResource/master/FigIDEAScala/IDEA_Scala_11.png" alt="Scala" title="Scala"><br>编写带有SparkContext的Scala程序，创建sc。运行。可以看到，能够正常运行Spark程序了。<br><img src="https://raw.githubusercontent.com/poptensory/OnlineResource/master/FigIDEAScala/IDEA_Scala_12.png" alt="Scala" title="Scala"></p>
+<h1 id="打包与提交到远程集群"><a href="#打包与提交到远程集群" class="headerlink" title="打包与提交到远程集群"></a>打包与提交到远程集群</h1><ol>
+<li>打包<br>步骤如下：<br><img src="https://raw.githubusercontent.com/poptensory/OnlineResource/master/FigIDEAScala/IDEA_Scala_13.png" alt="Scala" title="Scala"><br><img src="https://raw.githubusercontent.com/poptensory/OnlineResource/master/FigIDEAScala/IDEA_Scala_14.png" alt="Scala" title="Scala"><br><img src="https://raw.githubusercontent.com/poptensory/OnlineResource/master/FigIDEAScala/IDEA_Scala_15.png" alt="Scala" title="Scala"><br><img src="https://raw.githubusercontent.com/poptensory/OnlineResource/master/FigIDEAScala/IDEA_Scala_16.png" alt="Scala" title="Scala"><br>如下图，可以看到out/artifacts/xxx/目录下，多了一个jar包：Scala2JAR.jar<br><img src="https://raw.githubusercontent.com/poptensory/OnlineResource/master/FigIDEAScala/IDEA_Scala_17.png" alt="Scala" title="Scala"><br>2.提交运行<br>得到这个jar包之后，利用WinSCP等工具，将文件上传到集群上。然后输入如下命令运行。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">spark-submit --master spark://master_ip:7077 --class &quot;类名&quot; jar包.jar</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p><img src="https://raw.githubusercontent.com/poptensory/OnlineResource/master/FigIDEAScala/IDEA_Scala_18.png" alt="Scala" title="Scala"><br>出现如上的INFO-Level的日志，不报错，就说明成功运行。</p>
+<h1 id="可能出现的Bug"><a href="#可能出现的Bug" class="headerlink" title="可能出现的Bug"></a>可能出现的Bug</h1><p>如果出现如下错误：最可能的原因是，本地和集群的Spark或Scala版本不一致造成的。<br><img src="https://raw.githubusercontent.com/poptensory/OnlineResource/master/FigIDEAScala/IDEA_Scala_bug.png" alt="Scala" title="Scala"></p>
+<h1 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h1><p>将近一个月没写博客了，以后多挤点时间系统学习一些技能，知其所以然，争取坚持每周至少一篇总结的博客。加油！</p>
+<p>累了可以听听左上角的相声。</p>
 </the>
       
     </div>
@@ -329,13 +381,13 @@
   
     
     <div class="copyright">
-        <p><span>本文标题:</span><a href="/2018/11/14/python_spider/">Python爬虫笔记</a></p>
+        <p><span>本文标题:</span><a href="/2018/12/18/run_scala_on_spark/">Scala编写Spark程序Windows本地调试、打jar包、提交远程集群运行</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">tensory</a></p>
-        <p><span>发布时间:</span>2018-11-14, 20:36:43</p>
-        <p><span>最后更新:</span>2018-11-14, 20:55:15</p>
+        <p><span>发布时间:</span>2018-12-18, 22:36:47</p>
+        <p><span>最后更新:</span>2019-01-09, 22:13:35</p>
         <p>
-            <span>原始链接:</span><a class="post-url" href="/2018/11/14/python_spider/" title="Python爬虫笔记">http://www.tensory.online/2018/11/14/python_spider/</a>
-            <span class="copy-path" data-clipboard-text="原文: http://www.tensory.online/2018/11/14/python_spider/　　作者: tensory" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <span>原始链接:</span><a class="post-url" href="/2018/12/18/run_scala_on_spark/" title="Scala编写Spark程序Windows本地调试、打jar包、提交远程集群运行">http://www.tensory.online/2018/12/18/run_scala_on_spark/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://www.tensory.online/2018/12/18/run_scala_on_spark/　　作者: tensory" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
             <script> var clipboard = new Clipboard('.copy-path'); </script>
         </p>
         <p>
@@ -347,16 +399,10 @@
 
     <nav id="article-nav">
         
-            <div id="article-nav-newer" class="article-nav-title">
-                <a href="/2018/11/22/linux_user_group/">
-                    Linux用户管理
-                </a>
-            </div>
-        
         
             <div id="article-nav-older" class="article-nav-title">
-                <a href="/2018/11/14/git_to_github/">
-                    将本地项目添加到Git版本管理并关联Github仓库
+                <a href="/2018/12/05/hive_hbase/">
+                    Hive和Hbase对比
                 </a>
             </div>
         
@@ -368,7 +414,7 @@
     <div id="toc" class="toc-article">
         <strong class="toc-title">文章目录</strong>
         
-            
+            <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#开发环境"><span class="toc-number">1.</span> <span class="toc-text">开发环境</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#本地调试纯Scala程序"><span class="toc-number">2.</span> <span class="toc-text">本地调试纯Scala程序</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#本地调试Scala-Spark程序"><span class="toc-number">3.</span> <span class="toc-text">本地调试Scala Spark程序</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#打包与提交到远程集群"><span class="toc-number">4.</span> <span class="toc-text">打包与提交到远程集群</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#可能出现的Bug"><span class="toc-number">5.</span> <span class="toc-text">可能出现的Bug</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#小结"><span class="toc-number">6.</span> <span class="toc-text">小结</span></a></li></ol>
         
     </div>
     <style>
@@ -404,7 +450,7 @@
         </div>
         <script>
             window._bd_share_config={
-                "common":{"bdSnsKey":{},"bdText":"Python爬虫笔记　| tensory's Blog　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+                "common":{"bdSnsKey":{},"bdText":"Scala编写Spark程序Windows本地调试、打jar包、提交远程集群运行　| tensory's Blog　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
         </script>
     
 
@@ -424,15 +470,13 @@
 
     <div class="scroll" id="post-nav-button">
         
-            <a href="/2018/11/22/linux_user_group/" title="上一篇: Linux用户管理">
-                <i class="fa fa-angle-left"></i>
-            </a>
+            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
         
 
         <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
 
         
-            <a href="/2018/11/14/git_to_github/" title="下一篇: 将本地项目添加到Git版本管理并关联Github仓库">
+            <a href="/2018/12/05/hive_hbase/" title="下一篇: Hive和Hbase对比">
                 <i class="fa fa-angle-right"></i>
             </a>
         
