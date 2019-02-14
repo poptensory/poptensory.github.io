@@ -162,9 +162,9 @@
       <category term="Linux" scheme="http://www.tensory.online/categories/Linux/"/>
     
     
-      <category term="Linux" scheme="http://www.tensory.online/tags/Linux/"/>
-    
       <category term="用户管理" scheme="http://www.tensory.online/tags/%E7%94%A8%E6%88%B7%E7%AE%A1%E7%90%86/"/>
+    
+      <category term="Linux" scheme="http://www.tensory.online/tags/Linux/"/>
     
       <category term="运维" scheme="http://www.tensory.online/tags/%E8%BF%90%E7%BB%B4/"/>
     
@@ -266,9 +266,9 @@
       <category term="Linux" scheme="http://www.tensory.online/categories/Linux/"/>
     
     
-      <category term="用户管理" scheme="http://www.tensory.online/tags/%E7%94%A8%E6%88%B7%E7%AE%A1%E7%90%86/"/>
-    
       <category term="Ubuntu" scheme="http://www.tensory.online/tags/Ubuntu/"/>
+    
+      <category term="用户管理" scheme="http://www.tensory.online/tags/%E7%94%A8%E6%88%B7%E7%AE%A1%E7%90%86/"/>
     
   </entry>
   
