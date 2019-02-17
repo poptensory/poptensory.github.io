@@ -15,42 +15,20 @@
 
 
 
-<meta name="description" content="本文详述Scala本地debug、打jar包、提交到远程集群运行。">
-<meta name="keywords" content="Scala,Spark,debug">
+<meta name="description" content="本文介绍Nginx的功能">
+<meta name="keywords" content="Nginx,Http服务器,反向代理">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Scala编写Spark程序Windows本地调试、打jar包、提交远程集群运行">
-<meta property="og:url" content="http://www.tensory.online/2018/12/18/run_scala_on_spark/index.html">
+<meta property="og:title" content="Nginx那些事儿">
+<meta property="og:url" content="http://www.tensory.online/2019/02/17/nginx_server/index.html">
 <meta property="og:site_name" content="tensory&#39;s Blog">
-<meta property="og:description" content="本文详述Scala本地debug、打jar包、提交到远程集群运行。">
+<meta property="og:description" content="本文介绍Nginx的功能">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://raw.githubusercontent.com/poptensory/OnlineResource/master/FigIDEAScala/IDEA_Scala_env_var.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/poptensory/OnlineResource/master/FigIDEAScala/IDEA_Scala_java-cmd.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/poptensory/OnlineResource/master/FigIDEAScala/IDEA_Scala_spark-cmd.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/poptensory/OnlineResource/master/FigIDEAScala/IDEA_Scala_hadoop-cmd.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/poptensory/OnlineResource/master/FigIDEAScala/IDEA_Scala_1.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/poptensory/OnlineResource/master/FigIDEAScala/IDEA_Scala_2.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/poptensory/OnlineResource/master/FigIDEAScala/IDEA_Scala_3.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/poptensory/OnlineResource/master/FigIDEAScala/IDEA_Scala_4.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/poptensory/OnlineResource/master/FigIDEAScala/IDEA_Scala_5.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/poptensory/OnlineResource/master/FigIDEAScala/IDEA_Scala_6.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/poptensory/OnlineResource/master/FigIDEAScala/IDEA_Scala_7.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/poptensory/OnlineResource/master/FigIDEAScala/IDEA_Scala_8.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/poptensory/OnlineResource/master/FigIDEAScala/IDEA_Scala_9.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/poptensory/OnlineResource/master/FigIDEAScala/IDEA_Scala_10.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/poptensory/OnlineResource/master/FigIDEAScala/IDEA_Scala_11.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/poptensory/OnlineResource/master/FigIDEAScala/IDEA_Scala_12.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/poptensory/OnlineResource/master/FigIDEAScala/IDEA_Scala_13.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/poptensory/OnlineResource/master/FigIDEAScala/IDEA_Scala_14.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/poptensory/OnlineResource/master/FigIDEAScala/IDEA_Scala_15.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/poptensory/OnlineResource/master/FigIDEAScala/IDEA_Scala_16.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/poptensory/OnlineResource/master/FigIDEAScala/IDEA_Scala_17.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/poptensory/OnlineResource/master/FigIDEAScala/IDEA_Scala_18.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/poptensory/OnlineResource/master/FigIDEAScala/IDEA_Scala_bug.png">
-<meta property="og:updated_time" content="2019-01-09T14:13:35.790Z">
+<meta property="og:image" content="https://raw.githubusercontent.com/poptensory/MarkdownPictures/master/nginx_server.png">
+<meta property="og:updated_time" content="2019-02-17T12:41:44.748Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Scala编写Spark程序Windows本地调试、打jar包、提交远程集群运行">
-<meta name="twitter:description" content="本文详述Scala本地debug、打jar包、提交到远程集群运行。">
-<meta name="twitter:image" content="https://raw.githubusercontent.com/poptensory/OnlineResource/master/FigIDEAScala/IDEA_Scala_env_var.png">
+<meta name="twitter:title" content="Nginx那些事儿">
+<meta name="twitter:description" content="本文介绍Nginx的功能">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/poptensory/MarkdownPictures/master/nginx_server.png">
 
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 
@@ -82,7 +60,7 @@
 <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
 
 
-<title>Scala编写Spark程序Windows本地调试、打jar包、提交远程集群运行 | tensory&#39;s Blog</title>
+<title>Nginx那些事儿 | tensory&#39;s Blog</title>
 
 <script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
 <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
@@ -285,11 +263,11 @@
     </div>
     <link class="menu-list" tags="标签" friends="友情链接" about="关于我">
 </nav>
-      <div class="body-wrap"><article id="post-run_scala_on_spark" class="article article-type-post" itemscope="" itemprop="blogPost">
+      <div class="body-wrap"><article id="post-nginx_server" class="article article-type-post" itemscope="" itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2018/12/18/run_scala_on_spark/" class="article-date">
-      <time datetime="2018-12-18T14:36:47.660Z" itemprop="datePublished">2018-12-18</time>
+      <a href="/2019/02/17/nginx_server/" class="article-date">
+      <time datetime="2019-02-17T10:57:51.839Z" itemprop="datePublished">2019-02-17</time>
 </a>
 
 
@@ -304,7 +282,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      Scala编写Spark程序Windows本地调试、打jar包、提交远程集群运行
+      Nginx那些事儿
     </h1>
   
 
@@ -313,13 +291,13 @@
       <div class="article-info article-info-post">
         
     <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/大数据/">大数据</a>
+    <a class="article-category-link" href="/categories/Web前端/">Web前端</a>
     </div>
 
 
         
     <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Scala/">Scala</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Spark/">Spark</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/debug/">debug</a></li></ul>
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Http服务器/">Http服务器</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Nginx/">Nginx</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/反向代理/">反向代理</a></li></ul>
     </div>
 
         <div class="clearfix"></div>
@@ -329,38 +307,42 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <p><excerpt in="" index="" |=""><br>本文详述Scala本地debug、打jar包、提交到远程集群运行。<a id="more"></a></excerpt></p>
+        <p><excerpt in="" index="" |=""><br>本文介绍Nginx的功能<a id="more"></a></excerpt></p>
 <the rest="" of="" contents="" |="" 余下全文="">
 
-
-<h1 id="开发环境"><a href="#开发环境" class="headerlink" title="开发环境"></a>开发环境</h1><p>编译器：InteliJ IDEA<br>JD版本：1.8<br>Spark版本：2.2.2<br>Hadoop版本：2.7.3<br>Scala版本：2.11.8</p>
-<p>注意：</p>
+<p>最近需要将一个前端项目部署到服务器，后台部署在另一台服务器。查阅相关资料后，了解到需要一个http服务器，Apache、Nginx甚至python自带http服务器都可以实现。<br>但是最常用的是Nginx，并且Nginx除了http服务器功能之后，还可以实现负载均衡、反向代理、正向代理的功能，因此毫不犹豫地选择Nginx。</p>
+<h1 id="Nginx的安装"><a href="#Nginx的安装" class="headerlink" title="Nginx的安装"></a>Nginx的安装</h1><p>Ubuntu上Nginx的安装非常简单，代码如下。其他Linux系统貌似复杂一点。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"># 更新apt-get</span><br><span class="line">sudo apt-get update</span><br><span class="line"></span><br><span class="line"># 安装nginx</span><br><span class="line">sudo apt-get install nginx</span><br><span class="line"></span><br><span class="line"># 查看nginx</span><br><span class="line">whereis nginx</span><br></pre></td></tr></table></figure></p>
+<p>查看nginx的结果如下图<br><img src="https://raw.githubusercontent.com/poptensory/MarkdownPictures/master/nginx_server.png" alt="whereis nginx"><br>其中<code>/etc/nginx</code>包含最重要的配置文件。</p>
+<h1 id="静态资源部署-http服务器"><a href="#静态资源部署-http服务器" class="headerlink" title="静态资源部署(http服务器)"></a>静态资源部署(http服务器)</h1><p>静态资源，例如文本、图片、html页面等。部署在服务器，就可以通过[服务器IP+端口号]的方式访问这些资源了。需要做的有4步。</p>
 <ol>
-<li>IDEA自带Mave,sbt等工程管理工具，非常方便，所以选择IDEA。</li>
-<li>Windows本地调试，需要JDk，Spark，Hadoop，Scala，版本应当与集群版本保持一致。Spark和Hadoop的版本，只要不相差太大就没问题，但是本地和集群的JDK、Scala必须最好对应保持版本一致。</li>
-</ol>
-<h1 id="本地调试纯Scala程序"><a href="#本地调试纯Scala程序" class="headerlink" title="本地调试纯Scala程序"></a>本地调试纯Scala程序</h1><ol>
-<li><p>先下载JDK，Spark，Hadoop的安装包，解压到某个位置。</p>
-</li>
-<li><p>配置环境变量<br>配置JAVA_HOME, SPARK_HOME, HADOOP_HOME<br>在PATH这个变量中，添加JDK,Spark, Hadoop的bin目录对应的目录，如下图所示：<br><img src="https://raw.githubusercontent.com/poptensory/OnlineResource/master/FigIDEAScala/IDEA_Scala_env_var.png" alt="Env" title="Env"></p>
+<li>上传静态资源到服务器<br>例如，我们将web文档(HTML+JS)上传到主目录下的一个目录，上传之后的文件结构和内容如下：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">/home/tensory/MyWeb/web/a.html</span><br><span class="line">/home/tensory/MyWeb/web/b.html</span><br><span class="line">/home/tensory/MyWeb/web/c.html</span><br></pre></td></tr></table></figure>
 </li>
 </ol>
-<p>测试是否配置好环境变量，操作及正确反馈如下图：<br>JDK:<br><img src="https://raw.githubusercontent.com/poptensory/OnlineResource/master/FigIDEAScala/IDEA_Scala_java-cmd.png" alt="Java" title="Java"></p>
-<p>Spark:<br><img src="https://raw.githubusercontent.com/poptensory/OnlineResource/master/FigIDEAScala/IDEA_Scala_spark-cmd.png" alt="Spark" title="Spark"></p>
-<p>Hadoop:<br><img src="https://raw.githubusercontent.com/poptensory/OnlineResource/master/FigIDEAScala/IDEA_Scala_hadoop-cmd.png" alt="Hadoop" title="Hadoop"></p>
+<p>服务器的IP地址为<code>192.168.1.111</code>。<br>我们希望实现：浏览器地址栏输入<code>192.168.1.111:9990/web/a.html</code>能够看到页面<code>a.html</code>，诸如此类。</p>
+<ol start="2">
+<li>配置<br>进入/etc/nginx下，找到<code>nginx.conf</code>文件，进行如下配置(相应位置改为自己的)：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"># 设置用户</span><br><span class="line">user tensory tensory;</span><br><span class="line"></span><br><span class="line"># 设置进程数</span><br><span class="line">worker_processes  4;</span><br><span class="line"></span><br><span class="line"># 日志文件的目录，这个目录可能需要自己建立，不然后面无法启动Nginx</span><br><span class="line">error_log  logs/error.log  notice;</span><br><span class="line"></span><br><span class="line">events &#123;</span><br><span class="line">    worker_connections  1024;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">http &#123;</span><br><span class="line">    include       mime.types;</span><br><span class="line">    default_type  application/octet-stream;</span><br><span class="line">    sendfile        on;    </span><br><span class="line">    keepalive_timeout  65;</span><br><span class="line"></span><br><span class="line">	# 重点修改这里</span><br><span class="line">     server &#123;</span><br><span class="line">     	</span><br><span class="line">     	# IP和端口号设置：IP不能带有http等前缀；可以不设置端口，默认端口80，这样访问的时候地址栏可以不用写端口，默认80。</span><br><span class="line">        server_name 192.168.1.111;</span><br><span class="line">        listen	9990;</span><br><span class="line">        </span><br><span class="line">        location / &#123;</span><br><span class="line">        	# 改为自己的</span><br><span class="line">            root        /home/tensory/MyWeb;</span><br><span class="line">            </span><br><span class="line">            # 这个index.html为Nginx自带的页面，不用改动</span><br><span class="line">            index       index.html;</span><br><span class="line">        &#125;   </span><br><span class="line">    &#125;   </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>配置文件完成，注意别漏掉或多写{或}。</p>
 <ol start="3">
-<li>IDEA中建立Scala项目<br>step1: 建立一个项目<br>Scala&gt;IDEA&gt;Next，建立Scala项目。<br><img src="https://raw.githubusercontent.com/poptensory/OnlineResource/master/FigIDEAScala/IDEA_Scala_1.png" alt="Scala" title="Scala"><br>step2: 配置<br>特定注意配置好JDK路径，Scala路径和版本问题<br><img src="https://raw.githubusercontent.com/poptensory/OnlineResource/master/FigIDEAScala/IDEA_Scala_2.png" alt="Scala" title="Scala"><br>选择Scala源文件(含有bin等目录的Scala文件)。<br><img src="https://raw.githubusercontent.com/poptensory/OnlineResource/master/FigIDEAScala/IDEA_Scala_3.png" alt="Scala" title="Scala"><br><img src="https://raw.githubusercontent.com/poptensory/OnlineResource/master/FigIDEAScala/IDEA_Scala_4.png" alt="Scala" title="Scala"><br>建立目录，设置Sources源文件目录。<br><img src="https://raw.githubusercontent.com/poptensory/OnlineResource/master/FigIDEAScala/IDEA_Scala_5.png" alt="Scala" title="Scala"><br>建立一个Scala类。<br><img src="https://raw.githubusercontent.com/poptensory/OnlineResource/master/FigIDEAScala/IDEA_Scala_6.png" alt="Scala" title="Scala"><br><img src="https://raw.githubusercontent.com/poptensory/OnlineResource/master/FigIDEAScala/IDEA_Scala_7.png" alt="Scala" title="Scala"><br>编写对应代码，并运行。<br>可以看出，可以代码通过。<br><img src="https://raw.githubusercontent.com/poptensory/OnlineResource/master/FigIDEAScala/IDEA_Scala_8.png" alt="Scala" title="Scala"></li>
+<li>测试、载入配置</li>
 </ol>
-<p>上面的是纯粹的Scala程序，不需要Hadoop或者Spark也可以正常运行。</p>
-<h1 id="本地调试Scala-Spark程序"><a href="#本地调试Scala-Spark程序" class="headerlink" title="本地调试Scala Spark程序"></a>本地调试Scala Spark程序</h1><p>下面我们将代码编写更复杂一点。<br>step1: 导入Spark的jar包<br><img src="https://raw.githubusercontent.com/poptensory/OnlineResource/master/FigIDEAScala/IDEA_Scala_9.png" alt="Scala" title="Scala"><br>step2: 选择$SPARK_HOME/jars中的所有包。<br><img src="https://raw.githubusercontent.com/poptensory/OnlineResource/master/FigIDEAScala/IDEA_Scala_10.png" alt="Scala" title="Scala"><br>Apply &gt; OK<br><img src="https://raw.githubusercontent.com/poptensory/OnlineResource/master/FigIDEAScala/IDEA_Scala_11.png" alt="Scala" title="Scala"><br>编写带有SparkContext的Scala程序，创建sc。运行。可以看到，能够正常运行Spark程序了。<br><img src="https://raw.githubusercontent.com/poptensory/OnlineResource/master/FigIDEAScala/IDEA_Scala_12.png" alt="Scala" title="Scala"></p>
-<h1 id="打包与提交到远程集群"><a href="#打包与提交到远程集群" class="headerlink" title="打包与提交到远程集群"></a>打包与提交到远程集群</h1><ol>
-<li>打包<br>步骤如下：<br><img src="https://raw.githubusercontent.com/poptensory/OnlineResource/master/FigIDEAScala/IDEA_Scala_13.png" alt="Scala" title="Scala"><br><img src="https://raw.githubusercontent.com/poptensory/OnlineResource/master/FigIDEAScala/IDEA_Scala_14.png" alt="Scala" title="Scala"><br><img src="https://raw.githubusercontent.com/poptensory/OnlineResource/master/FigIDEAScala/IDEA_Scala_15.png" alt="Scala" title="Scala"><br><img src="https://raw.githubusercontent.com/poptensory/OnlineResource/master/FigIDEAScala/IDEA_Scala_16.png" alt="Scala" title="Scala"><br>如下图，可以看到out/artifacts/xxx/目录下，多了一个jar包：Scala2JAR.jar<br><img src="https://raw.githubusercontent.com/poptensory/OnlineResource/master/FigIDEAScala/IDEA_Scala_17.png" alt="Scala" title="Scala"><br>2.提交运行<br>得到这个jar包之后，利用WinSCP等工具，将文件上传到集群上。然后输入如下命令运行。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">spark-submit --master spark://master_ip:7077 --class &quot;类名&quot; jar包.jar</span><br></pre></td></tr></table></figure>
-</li>
+<p>对于配置文件，一定要进行测试，然后再载入Nginx。代码如下(方便起见，可以写成脚本)：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># 测试</span><br><span class="line">sudo nginx -t</span><br><span class="line"></span><br><span class="line"># 测试如果提示成功，则载入配置(载入并重启)</span><br><span class="line">sudo nginx -s reload</span><br></pre></td></tr></table></figure></p>
+<ol start="4">
+<li>测试访问<br>浏览器输入<code>192.168.1.111:9990/web/a.html</code>就能看到a.html页面，b.html和c.html同样可以看到。</li>
 </ol>
-<p><img src="https://raw.githubusercontent.com/poptensory/OnlineResource/master/FigIDEAScala/IDEA_Scala_18.png" alt="Scala" title="Scala"><br>出现如上的INFO-Level的日志，不报错，就说明成功运行。</p>
-<h1 id="可能出现的Bug"><a href="#可能出现的Bug" class="headerlink" title="可能出现的Bug"></a>可能出现的Bug</h1><p>如果出现如下错误：最可能的原因是，本地和集群的Spark或Scala版本不一致造成的。<br><img src="https://raw.githubusercontent.com/poptensory/OnlineResource/master/FigIDEAScala/IDEA_Scala_bug.png" alt="Scala" title="Scala"></p>
-<h1 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h1><p>将近一个月没写博客了，以后多挤点时间系统学习一些技能，知其所以然，争取坚持每周至少一篇总结的博客。加油！</p>
-<p>累了可以听听左上角的相声。</p>
+<h1 id="反向代理-ajax跨域问题"><a href="#反向代理-ajax跨域问题" class="headerlink" title="反向代理(ajax跨域问题)"></a>反向代理(ajax跨域问题)</h1><p>部署完成之后，能看到页面，但是a.html里面的ajax无法获取数据，原因是禁止跨域访问。</p>
+<p>假设a.html文件中包含ajax请求，请求的是API是后台提供的，且后台部署在<code>192.168.1.222</code>服务器上，端口号为<code>8880</code>。假设ajax请求如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">$.ajax&#123;</span><br><span class="line">	url:http://192.168.1.222:8880/api/getMoney,</span><br><span class="line">	type:&quot;GET&quot;,</span><br><span class="line">	......</span><br><span class="line">	success: function(data)&#123;</span><br><span class="line">	......</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>解决办法即反向代理。将ajax请求的url改为：<code>(端口号一定要和静态资源访问端口号相同，都是9990)</code><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">$.ajax&#123;</span><br><span class="line">	url:http://192.168.1.111:9990/api/getMoney,		// 注意这个端口号一定要和静态资源访问端口号相同，不然产生新的跨域。</span><br><span class="line">	type:&quot;GET&quot;,</span><br><span class="line">	......</span><br><span class="line">	success: function(data)&#123;</span><br><span class="line">	......</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>在前面的基础上，修改Nginx的配置文件<code>nginx.conf</code>，如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"># 设置用户</span><br><span class="line">user tensory tensory;</span><br><span class="line"></span><br><span class="line"># 设置进程数</span><br><span class="line">worker_processes  4;</span><br><span class="line"></span><br><span class="line"># 日志文件的目录，这个目录可能需要自己建立，不然后面无法启动Nginx</span><br><span class="line">error_log  logs/error.log  notice;</span><br><span class="line"></span><br><span class="line">events &#123;</span><br><span class="line">    worker_connections  1024;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">http &#123;</span><br><span class="line">    include       mime.types;</span><br><span class="line">    default_type  application/octet-stream;</span><br><span class="line">    sendfile        on;    </span><br><span class="line">    keepalive_timeout  65;</span><br><span class="line"></span><br><span class="line">	# 重点修改这里</span><br><span class="line">     server &#123;</span><br><span class="line">     	</span><br><span class="line">     	# IP和端口号设置：IP不能带有http等前缀；可以不设置端口，默认端口80，这样访问的时候地址栏可以不用写端口，默认80。</span><br><span class="line">        server_name 192.168.1.111;</span><br><span class="line">        listen	9990;</span><br><span class="line">        </span><br><span class="line">        location / &#123;</span><br><span class="line">        	# 改为自己的</span><br><span class="line">            root        /home/tensory/MyWeb;</span><br><span class="line">            </span><br><span class="line">            # 这个index.html为Nginx自带的页面，不用改动</span><br><span class="line">            index       index.html;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        #####################################</span><br><span class="line">        # 添加下面的location内容			#</span><br><span class="line">        #####################################</span><br><span class="line">        </span><br><span class="line">        location /api &#123;</span><br><span class="line">        	# 改为后台api所在的服务器的IP+端口</span><br><span class="line">            proxy_pass	http://192.168.1.222:8880;</span><br><span class="line">            </span><br><span class="line">            # cookie设置</span><br><span class="line">        	proxy_cookie_domain	192.168.1.111	192.168.1.222;</span><br><span class="line">        &#125;    </span><br><span class="line">    &#125;   </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>测试并重新载入配置文件，就可以通过ajax访问到后台数据了。上面这个过程叫做，反向代理。</p>
+<p>通过设置转发路径proxy_pass，将进入<code>http://192.168.1.111:9990</code>的请求转发到proxy_pass的路径，即：<code>http://192.168.1.222:8880</code>，即后端API的路径。</p>
+<h1 id="正向代理"><a href="#正向代理" class="headerlink" title="正向代理"></a>正向代理</h1><p>反向代理反过来。</p>
+<h1 id="负载均衡"><a href="#负载均衡" class="headerlink" title="负载均衡"></a>负载均衡</h1><p>负载均衡解决高并发请求，做法是将被请求方复制，置于多台服务器，请求的时候按照一定的概率(可以设置)或者轮询的方式访问这些服务器。<br>好处是：</p>
+<ol>
+<li>提高并发量：多台服务器分担压力。</li>
+<li>稳定：如果某台服务器宕掉，会转发到其他服务器。</li>
+</ol>
 </the>
       
     </div>
@@ -369,13 +351,13 @@
   
     
     <div class="copyright">
-        <p><span>本文标题:</span><a href="/2018/12/18/run_scala_on_spark/">Scala编写Spark程序Windows本地调试、打jar包、提交远程集群运行</a></p>
+        <p><span>本文标题:</span><a href="/2019/02/17/nginx_server/">Nginx那些事儿</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">tensory</a></p>
-        <p><span>发布时间:</span>2018-12-18, 22:36:47</p>
-        <p><span>最后更新:</span>2019-01-09, 22:13:35</p>
+        <p><span>发布时间:</span>2019-02-17, 18:57:51</p>
+        <p><span>最后更新:</span>2019-02-17, 20:41:44</p>
         <p>
-            <span>原始链接:</span><a class="post-url" href="/2018/12/18/run_scala_on_spark/" title="Scala编写Spark程序Windows本地调试、打jar包、提交远程集群运行">http://www.tensory.online/2018/12/18/run_scala_on_spark/</a>
-            <span class="copy-path" data-clipboard-text="原文: http://www.tensory.online/2018/12/18/run_scala_on_spark/　　作者: tensory" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <span>原始链接:</span><a class="post-url" href="/2019/02/17/nginx_server/" title="Nginx那些事儿">http://www.tensory.online/2019/02/17/nginx_server/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://www.tensory.online/2019/02/17/nginx_server/　　作者: tensory" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
             <script> var clipboard = new Clipboard('.copy-path'); </script>
         </p>
         <p>
@@ -387,16 +369,10 @@
 
     <nav id="article-nav">
         
-            <div id="article-nav-newer" class="article-nav-title">
-                <a href="/2019/01/14/beautiful_python_plot/">
-                    美就是生产力——Python绘图
-                </a>
-            </div>
-        
         
             <div id="article-nav-older" class="article-nav-title">
-                <a href="/2018/12/05/hive_hbase/">
-                    Hive和Hbase对比
+                <a href="/2019/02/12/latex_model/">
+                    美就是生产力——Latex排版
                 </a>
             </div>
         
@@ -408,7 +384,7 @@
     <div id="toc" class="toc-article">
         <strong class="toc-title">文章目录</strong>
         
-            <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#开发环境"><span class="toc-number">1.</span> <span class="toc-text">开发环境</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#本地调试纯Scala程序"><span class="toc-number">2.</span> <span class="toc-text">本地调试纯Scala程序</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#本地调试Scala-Spark程序"><span class="toc-number">3.</span> <span class="toc-text">本地调试Scala Spark程序</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#打包与提交到远程集群"><span class="toc-number">4.</span> <span class="toc-text">打包与提交到远程集群</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#可能出现的Bug"><span class="toc-number">5.</span> <span class="toc-text">可能出现的Bug</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#小结"><span class="toc-number">6.</span> <span class="toc-text">小结</span></a></li></ol>
+            <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Nginx的安装"><span class="toc-number">1.</span> <span class="toc-text">Nginx的安装</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#静态资源部署-http服务器"><span class="toc-number">2.</span> <span class="toc-text">静态资源部署(http服务器)</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#反向代理-ajax跨域问题"><span class="toc-number">3.</span> <span class="toc-text">反向代理(ajax跨域问题)</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#正向代理"><span class="toc-number">4.</span> <span class="toc-text">正向代理</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#负载均衡"><span class="toc-number">5.</span> <span class="toc-text">负载均衡</span></a></li></ol>
         
     </div>
     <style>
@@ -444,7 +420,7 @@
         </div>
         <script>
             window._bd_share_config={
-                "common":{"bdSnsKey":{},"bdText":"Scala编写Spark程序Windows本地调试、打jar包、提交远程集群运行　| tensory's Blog　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+                "common":{"bdSnsKey":{},"bdText":"Nginx那些事儿　| tensory's Blog　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
         </script>
     
 
@@ -464,15 +440,13 @@
 
     <div class="scroll" id="post-nav-button">
         
-            <a href="/2019/01/14/beautiful_python_plot/" title="上一篇: 美就是生产力——Python绘图">
-                <i class="fa fa-angle-left"></i>
-            </a>
+            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
         
 
         <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
 
         
-            <a href="/2018/12/05/hive_hbase/" title="下一篇: Hive和Hbase对比">
+            <a href="/2019/02/12/latex_model/" title="下一篇: 美就是生产力——Latex排版">
                 <i class="fa fa-angle-right"></i>
             </a>
         
