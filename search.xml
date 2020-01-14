@@ -3,6 +3,56 @@
   
     
     <entry>
+      <title>2003_SIGKDD_Maximizing the Spread of Influence through a Social Network</title>
+      <link href="/2020/01/08/Influence_maximization/"/>
+      <url>/2020/01/08/Influence_maximization/</url>
+      <content type="html"><![CDATA[<p>论文精读2003_SIGKDD_Maximizing the Spread of Influence through a Social Network<excerpt in="" index="" |=""><br><a id="more"></a></excerpt></p><the rest="" of="" contents="" |="" 余下全文=""><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;% pdf ./Network_1.pdf %&#125;</span><br></pre></td></tr></table></figure><p>1人点赞</p><p><a href="https://www.jianshu.com/nb/28329062" target="_blank" rel="noopener">hexo</a></p><h3 id="社交网络影响力最大化"><a href="#社交网络影响力最大化" class="headerlink" title="社交网络影响力最大化"></a>社交网络影响力最大化</h3><p>一个个社交网络最朴素的表示为$G=(V, E)$，其中$V$为用户集合，$E$为用户关系集合。</p><p>社交网络影响力最大化问题为：在$V$中寻找一个大小为$k$的用户集合$S^*$（这些用戶被称为有影响力用户，种子用户，或种子），使得这些用户能产生的影响力$\sigma(S)$最大，用数学表达为<br>$$<br>S = {\arg \max}_ {S \subseteq V, |S|=k}\sigma(S), \tag{1}<br>$$</p><p>影响力函数$\sigma$为如下这样一个映射：<br>$$<br>\sigma: 2^V \rightarrow N, \tag{2}<br>$$<br>$\sigma (S)$表示种子用户集$S$，通过<strong>影响力传播</strong>，能影响到的用户的数量。本质上，影响力最大化问题的另一种说法是<strong>种子用户识别</strong>，即寻找最具影响力的一批用户。</p><p>影响力最大化的主要有：利用社交网络进行产品病毒式营销、广告投放、信息扩散。一个常见的应用场景为：某公司生产了一个产品，需要找人做代言，在代言费有限的情况下，公司需要考虑代言人的选择问题，选谁或哪些人做代言人，能带来更多人的用户购买本公司的这款新产品。</p><h3 id="传播模型"><a href="#传播模型" class="headerlink" title="传播模型"></a>传播模型</h3><h5 id="影响力传播模型"><a href="#影响力传播模型" class="headerlink" title="影响力传播模型"></a>影响力传播模型</h5><p>影响力传播，指的是，给定一个种子用户集$S$，让这些用户利用社交网络中的好友、关注等链路关系，将信息转发给整个网络的过程。如果用户被某个信息感染/影响到，我们称之为被<strong>激活(activated)</strong>，并规定，种子用户在一开始就处于激活(<strong>active</strong>)状态。</p><p>影响力传播模型，是对影响力/信息传播过程的建模。直观上，我们对影响力传播的过程，有如下几点认识：</p><ul><li>影响力通过社交关系进行传播。如：好友关系、关注与被关注关系来传播</li><li>社交关系有强弱之分。</li><li>影响力的传播存在转发</li></ul><p>在这几点直观的认识基础上，现在介绍两类经典的影响力传播模型，在这两类模型中，用户的状态被分为两类：激活状态(active)和非激活状态(inactive)。</p><h5 id="线性阈值模型-Linear-Threshold-LT"><a href="#线性阈值模型-Linear-Threshold-LT" class="headerlink" title="线性阈值模型(Linear Threshold, LT)"></a>线性阈值模型(Linear Threshold, LT)</h5><p>LT模型，顾名思义，其两个特点是：线性的，并且存在<strong>阈值</strong>的概念。</p><p>具体是这样的：</p><p>在一个社交网络$G=(V, E)$，每个用户$v \in V$被给定一个阈值，每$\theta <em>v \in (0,1)$条边$(u, v)$被给定一个激活概率$b</em>{u, v}$，表示$u$如果处于激活状态，那么$u$激活$v$的概率。针对用户$v$，假设其处于激活状态的好友的集合为$N_{}(v)$，则在时刻$t$，用户$v$被激活的概率为<br>$$<br>p_{v, t}=\sum_{u \in N(v)}b_{u,v} \tag{3} \leq 1,<br>$$<br>用户$v$在如下条件满足的情况下，由非激活状态转化为激活状态:<br>$$<br>p_{v,t}=\sum_{u \in N(v)}b_{u,v} &gt; \theta_v. \tag{4}<br>$$<br>如图1，用户4的阈值为0.4，有三个好友1,2和3，用户1和2处于被激活状态，3处于非激活状态，所以$N(4)={1, 2}$因此其激活概率为0.2+0.15=0.35&lt;0.4，因此在这一轮的迭代中，用户4不会被激活。因此在给定种子集合$S$下，这些用户在t=0时刻即被设置为激活状态，之后通过遍历$G$中的每一个用户，激活这些用户，直到无法再激活新的用户为止。</p><p>注意：<strong>遍历</strong>的方式(如DFS，BFS或随机遍历)可能会影响最终被激活的用户数量。</p><h5 id="独立级联模型-Independent-Cascade-IC"><a href="#独立级联模型-Independent-Cascade-IC" class="headerlink" title="独立级联模型(Independent Cascade, IC)"></a>独立级联模型(Independent Cascade, IC)</h5><p>每条边$(u, v)$都有一个激活概率$b_{u, v}$，对用户$u\in V$，在一轮的遍历中，$u$的所有被激活的好友，分别对$u$尝试激活，无论成</p><p>功或失败，此后，这位好友对用户$u$均不再尝试激活。</p><p>如图2，用户4的三位好友，1,2和3，在时刻$t$，1和3均为激活状态，$N={1, 3}$ 。 现在1和3分别尝试以概率0.2和0.26对4进行激活，如果有一个成功了，那么4转化为激活状态，如果均失败，那么1和3此后对4均不在尝试激活。但如果2在之后被激活了，那么2仍然有机会激活4。</p><h5 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h5><ul><li>IC模型的特点有：$t$时刻，对用户$u$仅考虑$t-1$时刻被激活的好友</li><li>IC模型的特点：独立性，即每条边对应一个激活动作，各个动作之间是独立的，每一个激活动作的机会只有一次，失败与成功，这个条边的激活动作以后便不存在。</li><li>LT和IC模型，均限定了用户只能由未激活状态转化为激活状态</li><li>LT和IC模型是两个简化的版本，均对应泛化版本，并且两个模型可以证明是等价的。</li></ul><h3 id="理论证明"><a href="#理论证明" class="headerlink" title="理论证明"></a>理论证明</h3><h5 id="子模函数"><a href="#子模函数" class="headerlink" title="子模函数"></a>子模函数</h5><p>给定一个有限集合$\Omega$，函数$f: 2^{\Omega} \rightarrow R$，如果满足如下三条等价条件之一，则被称为子模函数(submodular function):</p><p>$f: 2^{\Omega} \rightarrow R$</p><ol><li><p>对任意$X \subseteqq Y \subsetneq \Omega$和任意的$e \in \Omega / Y$, 满足 $f(X \cup {e}) - f(X) \geq f(Y \cup {e}) - f(Y) $;</p></li><li><p>对任意 $S, T \subseteq \Omega$, 满足$f(S)+f(T) \geq f(S\cup T) + f(S \cap T)$;</p></li><li><p>对任意的$X \subseteq \Omega$和任意的$e_1, e_2 \in \Omega / X$， $e_1 \neq e_2$满足$f(X\cup {e_1}) + f(X \cup {e_2}) \geq f(X \cup {e_1, e_2}) + f(X)$.</p></li></ol><p>下面，证明这三个条件，是等价的。</p><p><strong>证明：</strong></p><ul><li><p>定义2$\rightarrow$ 1定义</p><p>令$S=X\cup{e},T=Y,X\subseteq Y \subsetneqq \Omega, e\in \Omega / Y$，代入2即可。</p></li><li><p>定义2$\rightarrow$3定义</p><p>令$S=X\cup{e_1}, T=X\cup{e_2}, e_1, e_2 \in \Omega/X, e_1 \neq e_2$，代入2即可。</p></li><li><p>定义1$\rightarrow$定义2</p><p>由1可知，<br>$$<br>f(X\cup{e_1}) - f(X) \geq f(Y\cup{e_1}) - f(Y) \tag{5}.<br>$$</p></li></ul><p>$$<br>f(X\cup{e_1, e_2}) - f(X\cup{e_1}) \geq f(Y\cup{e_1, e_2}) - f(Y\cup{e_1})\tag{6}.<br>$$</p><p>其中,$X\subseteq Y \subseteq \Omega, e_1, e_2 \in \Omega / Y$，两式相加可得<br>$$<br>f(X\cup{e_1, e_2})-f(X) \geq f(Y\cup{e_1, e_2}) - f(Y).<br>$$<br>现在由${e_1}$推到了${e_1, e_2}$，于是，定义1从一个元素$e$可以推广为一个集合$M$，如下<br>$$<br>f(X \cup M) - f(X) \geq f(Y \cup M) - f(Y) \tag{7}.<br>$$<br>其中$M\cap Y=\varnothing$，即有<br>$$<br>f(X\cup M) + f(Y) \geq f(X) + f(Y\cup M) \tag{8}.<br>$$</p><p>对于任意两个集合$S$和$T$,均可以表示成$S=X\cup M$和$T=Y$，其中$X\subseteq Y, M \cap Y = \varnothing$</p><p>所以，$S\cap T = X$，且$S\cup T=X\cup M \cup Y=Y\cup M$，代入到(8)有<br>$$<br>f(S)+f(T)\geq f(S\cap T) + f(S \cup T), \forall S, T \subseteq \Omega.<br>$$<br>证明完毕。</p><h5 id="单调性-Monotone"><a href="#单调性-Monotone" class="headerlink" title="单调性(Monotone)"></a>单调性(Monotone)</h5><ol><li><p>定义</p><p>如果$S\subseteq T \subseteq \Omega$，存在$f(S)\leq f(T)$，那么称$f$是单调的。</p><p>实际上，集合函数$f$的单调，类似数域函数的“单调递增函数”，只不过集合函数的单调性就是这么定义的。</p></li><li><p>非单调的子模函数的一个例子</p><p>不是所有的子模函数都是单调的，此处给出一个非单调的子模函数的例子。</p><p>$\Omega={a, b}$,所以$2^{\Omega}={\varnothing, {a}, {b}, {a, b}}$</p><p>为了方便期间，记$A={a}, B={b}$，定义</p><p>$f(\varnothing)=1, f({a})=1, f({b})=2, f({a,b})=1$，所以函数$f$不是单调的，下面验证$f$是子模函数。</p><ul><li><p>当$X=Y$，定义1一定成立。</p></li><li><p>当$X=\varnothing$，$Y={a}$或$Y={b}$。如，$Y={a}$，可以验证定义1成立。同理$Y={b}$时也成立。</p></li><li>当$X={a}, Y只能为{a}$，二者相同，定义1一定成立。</li><li>当$X={b}$，$Y$只能为${b}$，二者相同，定义1一定成立。</li></ul><p>所以，如上定义的$f$是一个非单调的子模函数。</p></li></ol><h5 id="单调子模函数问题的贪心算法"><a href="#单调子模函数问题的贪心算法" class="headerlink" title="单调子模函数问题的贪心算法"></a>单调子模函数问题的贪心算法</h5><ol><li><p>结论</p><p>如果函数$f$是$\Omega$上的单调子模函数，给定$1\leq k\leq |\Omega|$，那么对于如下问题：<br>$$<br>\max_{S\subseteq \Omega, |S|=k}f(S). \tag{9}<br>$$<br>使用贪心算法(Greedy Climbing)，可以求得一个具有精度保证的解，其精度至少为$(1-1/e)$。</p></li><li><p>引理</p><p>如果$f(S)$是$\Omega$上的子模函数，那么对于任意$S\subseteq \Omega$和$B\subseteq \Omega$，只要满足$S\cap B = \varnothing$,就有不等式成立：</p><p>$f(S\cup B)-f(S)\leq \sum_{i=1}^k f(S\cup{b_i}-f(S)$,</p><p>成立，其中$B={b_1,b_2,…,b_k}$。</p><p><strong>证明</strong></p><p>令$B_i={b_1,b_2,…,b_i},i=1,2,…,k$，并记$B_0=\varnothing$,$X=S$，$Y=S\cup B_{i-1}$,则有如下不等式成立</p><p>$f(X\cup{b_i})-f(X)\geq f(Y\cup{b_i})-f(Y)$</p><p>即</p><p>$f(S\cup {b_i})-f(S)\geq f(S\cup B_i)-f(S\cup B_{i-1})$</p><p>那么，有<br>$$<br>\sum_{i=1}^kf(S\cup{b_i})-f(S)\geq \sum _{i=1}^{k}f(S\cup B_i)-f(S\cup B_{i-1})<br>$$<br>整理得到：</p><p>$f(S\cup B_k)-f(S)\leq \sum_{i=1}^kf(S\cup{b_i})-f(S)$</p><p>证明完毕。</p></li><li><p>定理证明</p><p>下面证明$(1-1/e)$的精度。</p><p><strong>证明</strong></p><p>假定问题的最优解为$S_k^<em>={u_1^</em>,u_2^<em>,…,u_k^</em>}$，用贪心法求得解为$S_k={u_1,u_2,…,u_k}$，记$S_0=\varnothing$那么有<br>$$<br>f(S_i \cup {u_{i+1}}) \geq f(S_i \cup{u^x}).<br>$$<br>其中$u^x\in \Omega$为任意元素。因为，既然是贪心法，那么第$i+1$次往解集合中添加的元素$u_{i+1}$一定是使得$f(S_{i+1})$最大的元素，比其他任何元素都大。</p><p>由于$f$的单调性有，<br>$$<br>f(S_k^<em>)\leq f(S_k^</em>\cup S_i)=f(S_k^<em>\cup S_i)-f(S_i)+f(S_i)\leq^{引理}\sum_{j=1}^{k}[f(S_i\cup{u_j^</em>})-f(S_i)]+f(S_i)\leq \sum_{j=1}^k[f(S_i\cup{u_{i+1}})-f(S_i)]+f(S_i)\leq k<em>[f(S_{i+1})-f(S_i)] + f(S_i)<br>$$<br>即有<br>$$<br>f(S_{i+1}) \geq \frac{1}{k}[(k-1)f(S_i)+f(S_k^</em>)]=\frac{k-1}{k}f(S_i)+\frac{1 }{k}f(S_k^<em>),i\geq0.<br>$$<br>所以，<br>$$<br>f(S_k)\geq \frac{k-1}{k}f(S_{k-1})+\frac{1}{k}f(S^</em>_k)<br>$$</p></li></ol><p>$$<br>f(S_{k-1}) \geq \frac{k-1}{k}f(S_{k-2}) + \frac{1}{k}f(S^*_k)<br>$$</p><p>$$<br>f(S_{k-2}) \geq \frac{k-1}{k}f(S_{k-3}) + \frac{1}{k}f(S^*_k)<br>$$</p><p>……<br>$$<br>f(S_{1}) \geq \frac{k-1}{k}f(S_{0}) + \frac{1}{k}f(S^<em>_k)<br>$$<br>左右统一乘以$\frac{k-1}{k}$的若干项后<br>$$<br>f(S_k)\geq \frac{k-1}{k}f(S_{k-1})+\frac{1}{k}f(S^</em><em>k)\<br>\frac{k-1}{k}f(S</em>{k-1}) \geq (\frac{k-1}{k})^2f(S_{k-2}) + (\frac{k-1}{k})\frac{1}{k}f(S^<em><em>k)\<br>(\frac{k-1}{k})^2f(S</em>{k-2}) \geq (\frac{k-1}{k})^3f(S_{k-3}) + (\frac{k-1}{k})^2\frac{1}{k}f(S^</em><em>k)\<br>…\<br>(\frac{k-1}{k})^{k-1}f(S</em>{1}) \geq (\frac{k-1}{k})^kf(S_{0}) + (\frac{k-1}{k})^{k-1}\frac{1}{k}f(S^<em>_k)\<br>$$<br>上面$k$个不等式相加得到<br>$$<br>f(S_k) \geq (\frac{k-1}{k})^kf(S_0)+\frac{1}{k}f(S^</em><em>k)\sum</em>{i=0}^{k-1}(\frac{k-1}{k})^i\<br>=(\frac{k-1}{k})^kf(S_0)+[1-(1-\frac{1}{k})^k]f(S^<em>_k)<br>$$<br>如果$f(S_0)\geq0$，那么有<br>$$<br>f(S_k)\geq[1-(1-(\frac{1}{k})^k)]f(S^</em>_k)\geq (1-1/e)f(S_k^*)<br>$$<br>证明完毕。</p></the>]]></content>
+      
+      <categories>
+          
+          <category> 科研 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 社交网络 </tag>
+            
+            <tag> 贪心法 </tag>
+            
+            <tag> 影响力 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    <entry>
+      <title>《善恶图》剧情剖析</title>
+      <link href="/2019/12/04/%E5%96%84%E6%81%B6%E5%9B%BE/"/>
+      <url>/2019/12/04/%E5%96%84%E6%81%B6%E5%9B%BE/</url>
+      <content type="html"><![CDATA[<p><excerpt in="" index="" |=""><br>《善恶图》是这个故事的学名，小名又叫《顺天府三案连环二十二条人命》。<a id="more"></a></excerpt></p><p><the rest="" of="" contents="" |="" 余下全文=""><br>废话不多说，先看一张人物关系图。</the></p><p><img src="https://raw.githubusercontent.com/poptensory/MarkdownPictures/master/shanetu.jpg" alt="人物关系" title="Optional title"></p><p>天为罗盖地为毯，日月星辰伴我眠。</p><p>什么人撒下名利网，富贵贫困不一般。</p><p>也有骑马与坐轿，也有推车把担儿担。</p><p>骑马坐轿修来的福，推车担担儿命该然。</p><p>骏马驮着痴呆汉，美妇人常伴拙夫眠。</p><p>八十老翁门前站，三岁顽童染黄泉。</p><p>不是老天不睁眼，善恶到头，这报应循环。</p><p>事情发生在秋天的北京，天气有点冷。有这么一个人，叫袁得满，他有个兄弟是杏花楼的老板，由于兄弟出门办货人间蒸发，袁得满接手了兄弟的买卖，做了杏花楼的老板，买卖越干越好，到后来还接手了兄弟媳妇。</p><p>一天袁得满出门找朋友曲之升喝酒，喝多了骂起来了，袁得满骂骂咧咧地出了门回家，雇了一辆骡子车载自己回去，自己就在骡子车上睡着了。这车夫是个小偷，骡子车是偷来的，驾着车跟袁得满搭话，问了三五句没有回音，回来一看，袁得满躺那，伸手一摸，全身冰凉。小偷心说，我偷个车没多大罪过，搭上人命可不划算，于是跳下车对着骡子就是一下抽打，骡子车顺着马路往前跑了。骡子车无人驾驶，来到了一家快捷酒店，酒店老板姓高，叫高胖子，一看没人，白得一车，高兴坏了，撩开骡子车的帘子，一看躺着人，伸手一摸全身冰凉，心想感觉把车赶走吧，别摊上事。拉着骡子车来到大马路边上，刚要走碰见了巡夜的兵丁，</p>]]></content>
+      
+      <categories>
+          
+          <category> 相声 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 相声 </tag>
+            
+            <tag> 郭德纲 </tag>
+            
+            <tag> 单口相声 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    <entry>
       <title>PyGame</title>
       <link href="/2019/07/02/dull_pygame/"/>
       <url>/2019/07/02/dull_pygame/</url>
@@ -213,9 +263,9 @@
       
         <tags>
             
-            <tag> 用户管理 </tag>
-            
             <tag> Linux </tag>
+            
+            <tag> 用户管理 </tag>
             
             <tag> 运维 </tag>
             
@@ -463,9 +513,9 @@
             
             <tag> Hive </tag>
             
-            <tag> Linux </tag>
-            
             <tag> Hadoop </tag>
+            
+            <tag> Linux </tag>
             
         </tags>
       
